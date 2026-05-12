@@ -184,12 +184,6 @@ function renderSummary(data) {
 
   subtotalEl.innerText = `$${subtotal.toFixed(2)}`;
   totalEl.innerText = `$${total.toFixed(2)}`;
-  
-  // Actualizar total en cuadro de Zelle si existe
-  const zelleTotalEl = document.getElementById('zelle-total');
-  if (zelleTotalEl) {
-    zelleTotalEl.innerText = `$${total.toFixed(2)}`;
-  }
 }
 
 function initOrderTypeToggle() {
