@@ -38,6 +38,11 @@ function renderCheckoutReviews() {
   let currentIndex = 0;
   
   container.innerHTML = `
+    <style>
+    .zelle-details { display: none; margin-top: 10px; width: 100%; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; }
+    input[value="zelle"]:checked ~ .card-content .zelle-details { display: block; }
+    .payment-card input:checked ~ .card-content { border-color: #673ab7; background: rgba(103, 58, 183, 0.1); }
+    </style>
     <h3 style="margin-top: 40px; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--bone);">Lo que dicen de nosotros</h3>
     <div id="checkout-review-content" style="transition: opacity 0.3s ease;">
     </div>
@@ -179,6 +184,12 @@ function renderSummary(data) {
 
   subtotalEl.innerText = `$${subtotal.toFixed(2)}`;
   totalEl.innerText = `$${total.toFixed(2)}`;
+  
+  // Actualizar total en cuadro de Zelle si existe
+  const zelleTotalEl = document.getElementById('zelle-total');
+  if (zelleTotalEl) {
+    zelleTotalEl.innerText = `$${total.toFixed(2)}`;
+  }
 }
 
 function initOrderTypeToggle() {
