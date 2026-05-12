@@ -253,10 +253,7 @@ function initFormHandler(checkoutData) {
       // Mostrar el prompt de Google (One Tap o Pop-up)
       google.accounts.id.prompt((notification) => {
         if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-          console.warn("Google Sign-In prompt no se mostró. Verifica que el Client ID sea válido y estés en HTTPS/localhost.");
-          if (GOOGLE_CLIENT_ID.includes("TU_CLIENT_ID_DE_GOOGLE")) {
-             alert("Aviso para el Administrador: Debes configurar tu GOOGLE_CLIENT_ID real en checkout.js para que esta función opere con cuentas reales.");
-          }
+          console.warn("Google Sign-In prompt no se mostró. Esto es normal si no se ha configurado un Client ID real.");
         }
       });
     });
