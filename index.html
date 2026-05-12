@@ -5,6 +5,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SantoPadre® | Donde el buen gusto es tu única membresía.</title>
+  <meta name="description" content="SantoPadre® | Menú Premium, Servicio de Catering, Santo Merchant y Regalos Exclusivos. Descubre la excelencia gastronómica con atención personalizada y envíos directos.">
+  <meta name="keywords" content="SantoPadre, Menú, Tacos Premium, Servicio de Catering, Santo Merchant, Regalos, Preguntas Frecuentes, Comida Mexicana, Delivery Gourmet">
+  <meta name="author" content="SantoPadre®">
+  
+  <!-- GEO & Local SEO -->
+  <meta name="geo.region" content="VE" />
+  <meta name="geo.placename" content="Caracas" />
+  <meta name="geo.position" content="10.4806;-66.9036" />
+  <meta name="ICBM" content="10.4806, -66.9036" />
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SantoPadre® | Donde el buen gusto es tu única membresía.">
+  <meta property="og:description" content="Explora nuestro Menú, Servicio de Catering y Santo Merchant. Calidad premium en cada detalle.">
+  <meta property="og:image" content="assets/logo.webp">
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "SantoPadre®",
+    "alternateName": "SantoPadre Ecommerce",
+    "description": "Menú Premium, Servicio de Catering, Santo Merchant y Regalos.",
+    "url": "https://santopadre.pages.dev",
+    "logo": "https://santopadre.pages.dev/assets/logo.webp",
+    "image": "https://santopadre.pages.dev/assets/logo.webp",
+    "servesCuisine": "Mexicana Gourmet",
+    "priceRange": "$$",
+    "hasMenu": "https://santopadre.pages.dev/#menu",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Caracas",
+      "addressCountry": "VE"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Servicios SantoPadre",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Servicio de Catering" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Santo Merchant" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Regalos y Gift Cards" } }
+      ]
+    }
+  }
+  </script>
+
   <link rel="icon" type="image/webp" href="assets/logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2375,10 +2422,18 @@
     </div>
   </section>
 
-  <!-- PRODUCTS SECTION -->
-  <div id="menu-sections">
-    <!-- Dynamic Sections Injected -->
-  </div>
+  <!-- PRODUCTS SECTION (MENÚ) -->
+  <section id="menu" style="padding-top: 80px;">
+    <div class="container">
+      <div class="smart-title">
+        <h2 class="reveal">Nuestro Menú<br>Sagrado.</h2>
+        <p class="reveal">Explora la infraestructura del sabor: Tacos, Burritos, Entrantes y Especialidades.</p>
+      </div>
+      <div id="menu-sections">
+        <!-- Dynamic Sections Injected -->
+      </div>
+    </div>
+  </section>
 
   <!-- REVIEWS -->
   <section id="reviews">
@@ -2418,9 +2473,8 @@
   <section class="catering-banner reveal" id="catering">
     <div class="container">
       <div class="eyelet">— Eventos · B2B</div>
-      <h2>EVANGELIZAMOS<br>TU EVENTO.</h2>
-      <p>Llevamos la auténtica infraestructura del sabor mexicano directo a tu terreno. Estaciones en vivo de Tacos,
-        Burritos y Birria. No servimos pasapalos, montamos una estación de combate.</p>
+      <h2>SERVICIO DE CATERING:<br>EVANGELIZAMOS TU EVENTO.</h2>
+      <p>Llevamos la auténtica infraestructura del sabor mexicano y nuestro Servicio de Catering directo a tu terreno. Estaciones en vivo de Tacos, Burritos y Birria. No servimos pasapalos, montamos una estación de combate.</p>
       <button class="btn primary"
         onclick="window.open('https://form.typeform.com/to/bNVBTmFR', '_blank')"><span>Solicitar
           Banquete</span></button>
@@ -2431,9 +2485,8 @@
   <section id="faq">
     <div class="container">
       <div class="smart-title">
-        <h2 class="reveal">Preguntas<br>Incómodas.</h2>
-        <p class="reveal">Resolvemos tus dudas con la verdad por delante. Sin filtros, sin dramas, solo respuestas
-          reales.</p>
+        <h2 class="reveal">Preguntas Frecuentes<br>e Incómodas.</h2>
+        <p class="reveal">Resolvemos tus dudas sobre nuestro Menú, Pedidos y Servicios. Sin filtros, solo respuestas reales.</p>
       </div>
       <div class="faq-grid" id="faq-grid">
         <!-- Injected by JS -->

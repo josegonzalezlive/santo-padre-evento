@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Palabras clave principales para indexación
+# Menú, Preguntas Frecuentes, Servicio de Catering, Santo Merchant, Regalos
+
+Sitemap: https://santopadre.pages.dev/sitemap.xml
