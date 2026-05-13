@@ -15,4 +15,30 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+  <!-- Páginas Ocultas de SEO Programático -->
+  <url>
+    <loc>https://santopadre.store/seo/tacos-en-acarigua.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://santopadre.store/seo/burritos-en-araure.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://santopadre.store/seo/comida-mexicana-portuguesa.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://santopadre.store/seo/catering-eventos-acarigua.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>
