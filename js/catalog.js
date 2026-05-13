@@ -12,7 +12,7 @@ const CATALOG = {
           name: "Flauta de Cochinita (6U)",
           description: "Tortilla de maíz frita rellena de cochinita pibil al horno, queso fundido, crema y cilantro. Crujen tanto que tus vecinos de mesa sabrán exactamente qué estás comiendo.",
           allergens: "Lácteos, Glúten (trazas)",
-          image: "https://i.ibb.co/mrnbBWpw/IMG-7618.avif",
+          image: "assets/menu/flauta-cochinita.webp",
           hasVariants: true,
           variants: [
             { id: "v1", name: "Ración 6 Unidades", price: 12.00 },
@@ -27,7 +27,7 @@ const CATALOG = {
           name: "Flauta de Pollo",
           description: "Pollo desmechado sin dramas, queso amarillo, crema y cilantro sobre tortilla de maíz frita. El clásico infalible.",
           allergens: "Lácteos, Glúten (trazas)",
-          image: "https://i.ibb.co/5WYNDPGj/IMG-7090.jpg",
+          image: "assets/menu/flauta-pollo.webp",
           hasVariants: true,
           variants: [
             { id: "v1", name: "Ración 6 Unidades", price: 10.50 },
@@ -42,7 +42,7 @@ const CATALOG = {
           name: "Nachos",
           description: "Una montaña de totopos bajo carne chilli, cheddar, pico de gallo, guacamole y nata. Tienen alma y probablemente manchen tu camisa blanca.",
           allergens: "Lácteos",
-          image: "https://i.ibb.co/1CM7g26/IMG-7103.jpg",
+          image: "assets/menu/nachos.webp",
           hasVariants: true,
           variants: [
             { id: "v1", name: "Tamaño Pequeño (PEQ)", price: 7.25 },
@@ -65,7 +65,7 @@ const CATALOG = {
           name: "Tacos al Pastor (3U)",
           description: "Cerdo marinado al pastor, cebolla, cilantro y piña asada. El equilibrio sagrado.",
           allergens: "Ninguno (100% Maíz)",
-          image: "https://i.ibb.co/Vc8pztsj/IMG-7083.jpg",
+          image: "assets/menu/tacos-pastor.webp",
           price: 11.50,
           badges: ["EL MÁS VENDIDO"],
           tags: ["👑 EL REY", "🍍 TOQUE ASADO", "🌽 100% MAÍZ"],
@@ -76,7 +76,7 @@ const CATALOG = {
           name: "Tacos de Carne (3U)",
           description: "Punta trasera marinada de la buena, cebolla y cilantro. Simple, directo, perfecto.",
           allergens: "Ninguno",
-          image: "https://i.ibb.co/Ngn6LDND/IMG-7085-2.jpg",
+          image: "assets/menu/tacos-carne.webp",
           price: 12.50,
           badges: [],
           tags: ["🥩 CORTE PREMIUM", "💪 PROTEÍNA TOP", "🔥 SABOR A BRASA"],
@@ -98,7 +98,7 @@ const CATALOG = {
           name: "Tacos de Birria (3U)",
           description: "Queso fundido, carne de res adobada hecha a fuego lento, cebolla y cilantro. Incluye consomé.",
           allergens: "Lácteos",
-          image: "https://i.ibb.co/Ynk4Yw4/IMG-1189.avif",
+          image: "assets/menu/tacos-birria.webp",
           price: 12.50,
           badges: ["FAVORITO"],
           tags: ["🥘 ARTESANAL", "🧀 EXTRA QUESO", "✨ RECOMENDACIÓN DEL CHEF"],
@@ -128,7 +128,7 @@ const CATALOG = {
           name: "Fajitas (6U)",
           description: "Un festín de lomito y pollo salteado con cebolla y pimentón, tortillas de harina de trigo, pico de gallo, guacamole y queso. Tú las montas.",
           allergens: "Glúten (Trigo), Lácteos",
-          image: "https://i.ibb.co/9m3x4Gsz/572b36867c5186f1c20dd1315182276b.jpg",
+          image: "assets/menu/fajitas.webp",
           price: 38.00,
           badges: ["NUEVO"],
           tags: ["🛠️ DIY: HAZLO TÚ MISMO", "🍱 BANQUETE COMPLETO", "🥩 LOMITO QUALITY"],
@@ -158,7 +158,7 @@ const CATALOG = {
           name: "Birria Ramen",
           description: "Fideos ramen en consomé de res de cocción lenta, birria deshebrada, cebolla y cilantro. El abrazo que necesitas.",
           allergens: "Glúten",
-          image: "https://i.ibb.co/HcZ0kJB/este-mismo.jpg",
+          image: "assets/menu/birria-ramen.webp",
           price: 13.50,
           badges: ["TOP TEMPORADA LLUVIA"],
           tags: ["🍜 FUSION STYLE", "🥣 CALDO RECONFORTANTE", "🥄 CUCHARA Y TACO"]
@@ -175,7 +175,7 @@ const CATALOG = {
           id: "agua",
           name: "Agua",
           description: "Hidratación pura y necesaria para seguir pecando sin dramas.",
-          image: "https://i.ibb.co/d0yGp6mD/Screenshot-2026-04-15-at-1-48-05-pm.png",
+          image: "assets/menu/agua.webp",
           hasVariants: true,
           variants: [
             { id: "v1", name: "Botella 600ML", price: 2.00, image: "https://i.ibb.co/d0yGp6mD/Screenshot-2026-04-15-at-1-48-05-pm.png" },
@@ -183,10 +183,10 @@ const CATALOG = {
           ],
           tags: ["💧 HIDRATACIÓN", "👪 TAMAÑO FAMILIAR", "💰 AHORRA MÁS"]
         },
-        { id: "coca-cola", name: "Coca Cola", description: "El clásico carbonatado que no necesita presentación ni perdón.", price: 1.50, image: "https://i.ibb.co/5W3JJJ9B/60c25c9e9158837168ad837f003da8ae.jpg", tags: ["🧊 BIEN FRÍA"] },
+        { id: "coca-cola", name: "Coca Cola", description: "El clásico carbonatado que no necesita presentación ni perdón.", price: 1.50, image: "assets/menu/coca-cola.webp", tags: ["🧊 BIEN FRÍA"] },
         { id: "cerveza", name: "Cerveza", description: "Una rubia bien fría para apagar el fuego del chile y brindar por la vida.", price: 2.20, video: "https://res.cloudinary.com/dxishpwhl/video/upload/Cerveza_gzoxky.mp4", tags: ["🍺 MARIDAJE PERFECTO"] },
-        { id: "lipton", name: "Lipton", description: "Té frío para los que buscan un poco de calma cítrica en medio del caos.", price: 3.00, image: "https://i.ibb.co/BHvvwkfF/Screenshot-2026-04-15-at-1-38-59-pm.png", tags: ["🍃 REFRESCANTE"] },
-        { id: "gatorade", name: "Gatorade", description: "Electrolitos sagrados para recuperar el alma después de una buena tanda de tacos.", price: 3.20, image: "https://i.ibb.co/F41Th9rK/310491d548acf71992220243cc0dccec.jpg", tags: ["⚡ ELECTROLITOS"] }
+        { id: "lipton", name: "Lipton", description: "Té frío para los que buscan un poco de calma cítrica en medio del caos.", price: 3.00, image: "assets/menu/lipton.webp", tags: ["🍃 REFRESCANTE"] },
+        { id: "gatorade", name: "Gatorade", description: "Electrolitos sagrados para recuperar el alma después de una buena tanda de tacos.", price: 3.20, image: "assets/menu/gatorade.webp", tags: ["⚡ ELECTROLITOS"] }
       ]
     },
     {
@@ -230,7 +230,7 @@ const CATALOG = {
           id: "gift-card-25",
           name: "Gift Card SantoPadre $25",
           description: "Regala $25 de crédito en SantoPadre a quien quieras. Un billete directo a la Parroquia.",
-          image: "https://i.ibb.co/mrnbBWpw/IMG-7618.avif",
+          image: "assets/menu/gift-card-25.webp",
           price: 25.00,
           tags: ["🎁 REGALO PERFECTO", "✉️ ENVÍO DIGITAL"]
         },
@@ -238,7 +238,7 @@ const CATALOG = {
           id: "gift-card-50",
           name: "Gift Card SantoPadre $50",
           description: "Regala $50 de crédito en SantoPadre a quien quieras. Un billete directo a la Parroquia.",
-          image: "https://i.ibb.co/mrnbBWpw/IMG-7618.avif",
+          image: "assets/menu/gift-card-50.webp",
           price: 50.00,
           tags: ["🎁 REGALO PERFECTO", "✉️ ENVÍO DIGITAL"]
         },
@@ -246,7 +246,7 @@ const CATALOG = {
           id: "pase-corporativo",
           name: "Pase Corporativo",
           description: "Saldo prepago exclusivo para empresas. Alimenta a tu equipo con facturación consolidada y ahorra en cada bocado.",
-          image: "https://i.ibb.co/mrnbBWpw/IMG-7618.avif",
+          image: "assets/menu/pase-corporativo.webp",
           price: 150.00,
           tags: ["💼 B2B", "📈 AHORRO EMPRESARIAL"]
         }
