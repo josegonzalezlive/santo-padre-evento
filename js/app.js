@@ -207,7 +207,7 @@ function renderProductCard(item, catId = '') {
   } else if (item.video) {
     mediaHtml = `
       <div class="thumb">
-        <video autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;">
+        <video muted loop playsinline style="width:100%; height:100%; object-fit:cover;" preload="none" poster="${item.image || ''}" onmouseover="this.play()" onmouseout="this.pause()">
           <source src="${item.video}" type="video/mp4">
         </video>
         ${badgeHtml}
