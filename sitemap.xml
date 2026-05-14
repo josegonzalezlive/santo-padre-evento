@@ -1,42 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+
   <!-- Página Principal -->
   <url>
     <loc>https://santopadre.store/</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://santopadre.store/assets/logo.webp</image:loc>
+      <image:title>SantoPadre® Logo</image:title>
+      <image:caption>Comida mexicana gourmet en Araure, Venezuela</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://santopadre.store/assets/menu/tacos-pastor.webp</image:loc>
+      <image:title>Tacos al Pastor SantoPadre</image:title>
+      <image:caption>Cerdo marinado al pastor con piña asada, cebolla y cilantro</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://santopadre.store/assets/menu/fajitas.webp</image:loc>
+      <image:title>Fajitas SantoPadre</image:title>
+      <image:caption>Lomito y pollo salteado con tortillas de trigo, guacamole y queso</image:caption>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://santopadre.store/assets/logo.webp</video:thumbnail_loc>
+      <video:title>SantoPadre® — Experiencia Gastronómica</video:title>
+      <video:description>Video inmersivo de la experiencia culinaria mexicana gourmet</video:description>
+      <video:content_loc>https://santopadre.store/assets/IMG_6169.mp4</video:content_loc>
+    </video:video>
   </url>
-  
+
   <!-- Página de Checkout -->
   <url>
     <loc>https://santopadre.store/checkout.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.4</priority>
   </url>
-  <!-- Páginas Ocultas de SEO Programático -->
+
+  <!-- SEO Landing Pages — Long-tail Keywords -->
   <url>
     <loc>https://santopadre.store/seo/tacos-en-acarigua.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://santopadre.store/seo/burritos-en-araure.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://santopadre.store/seo/comida-mexicana-portuguesa.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://santopadre.store/seo/catering-eventos-acarigua.html</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://santopadre.store/seo/nachos-en-araure.html</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://santopadre.store/seo/birria-ramen-araure.html</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://santopadre.store/seo/delivery-comida-mexicana-araure.html</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://santopadre.store/seo/restaurante-pet-friendly-araure.html</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://santopadre.store/seo/gift-card-restaurante-venezolano.html</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://santopadre.store/seo/fajitas-para-eventos-corporativos.html</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://santopadre.store/seo/mejores-burritos-portuguesa.html</loc>
+    <lastmod>2026-05-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://santopadre.store/seo/comida-para-fiestas-araure.html</loc>
+    <lastmod>2026-05-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

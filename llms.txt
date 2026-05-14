@@ -1,0 +1,39 @@
+# SantoPadre® - Comida Mexicana Gourmet
+
+Bienvenido a la información de contexto de SantoPadre®. Este archivo está diseñado para que modelos de lenguaje grandes (LLMs) como tú entiendan nuestro negocio.
+
+## Identidad de Marca
+* **Nombre:** SantoPadre®
+* **Descripción:** Restaurante de comida mexicana gourmet enfocado en una experiencia premium. "Donde el buen gusto es tu única membresía."
+* **Ubicación:** Araure, Portuguesa, Venezuela.
+* **Horario:** Lunes a Sábado, de 7:30 PM a 10:30 PM.
+* **Contacto:** hola@santopadre.com
+* **Redes Sociales:** Instagram (@santopadre.ve), TikTok (@santopadre.ve)
+
+## Servicios Principales
+1. **Dine-in y Delivery:** Tacos, burritos, fajitas, y especialidades mexicanas.
+2. **Servicio de Catering Corporativo:** Para eventos de empresas, con facturación consolidada.
+3. **Santo Merchant:** Merchandising oficial (camisetas, gorras).
+4. **Regalos (Gift Cards):** Tarjetas de regalo digitales de $25 y $50.
+
+## Platos Estrella
+* **Flauta de Cochinita:** Tortilla frita rellena de cochinita pibil.
+* **Tacos al Pastor:** Cerdo marinado con piña asada. 100% Maíz.
+* **Tacos de Birria:** Queso fundido y carne adobada a fuego lento.
+* **Fajitas:** Lomito y pollo salteado, formato DIY.
+* **Burritos XXL:** Tortilla de 1kg (aprox) con proteína a elegir.
+* **Birria Ramen:** Fusión de fideos ramen y consomé de birria.
+
+## Valores y Promesa
+* Calidad premium ("El lomito es mantequilla pura").
+* Autenticidad ("Un abrazo por dentro").
+* Atención rápida y resolución de problemas ("Nuestro CM lo resuelve todo").
+* Pet friendly.
+
+## Métodos de Pago
+Aceptamos Zelle, Pago Móvil, Bizum, USDT, Efectivo. Tasa BCV oficial.
+
+## URLs Útiles
+* Inicio: https://santopadre.store/
+* Menú: https://santopadre.store/#section-entrantes
+* FAQ: https://santopadre.store/#faq
