@@ -267,7 +267,7 @@ function renderProductCard(item, catId = '') {
   } else if (item.video) {
     mediaHtml = `
       <div class="thumb">
-        <video muted loop playsinline style="width:100%; height:100%; object-fit:cover;" preload="none" poster="${item.image || ''}" onmouseover="this.play()" onmouseout="this.pause()">
+        <video muted loop playsinline class="product-video" style="width:100%; height:100%; object-fit:cover;" preload="metadata" poster="${item.image || ''}" onmouseover="this.play()" onmouseout="this.pause()">
           <source src="${item.video}" type="video/mp4">
         </video>
         ${badgeHtml}
@@ -500,6 +500,38 @@ function initPaseTicketWidgets() {
   });
 }
 
+/**
+ * Optimized Video Autoplay for Mobile & Desktop
+ * Uses IntersectionObserver to play/pause product videos based on viewport visibility.
+ */
+function initProductVideos() {
+  const videos = document.querySelectorAll('.product-video');
+  if (!videos.length) return;
+
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        // Play when entering viewport (with rootMargin padding)
+        video.play().catch(err => {
+          // Failure is usually due to lack of user interaction, but muted should work
+          console.warn("Autoplay blocked or failed:", err);
+        });
+      } else {
+        // Pause when out of view to save resources
+        video.pause();
+      }
+    });
+  }, { 
+    // rootMargin '200px 0px' means it triggers 200px before entering viewport
+    // perfect for "near" detection on mobile.
+    rootMargin: '200px 0px',
+    threshold: 0.01 
+  });
+
+  videos.forEach(video => videoObserver.observe(video));
+}
+
 // Hook into renderProducts to auto-init ticket widgets after DOM update
 const _origRenderProducts = renderProducts;
 renderProducts = function() {
@@ -508,6 +540,7 @@ renderProducts = function() {
   requestAnimationFrame(() => {
     initPaseTicketWidgets();
     initGiftCardWidget();
+    initProductVideos();
   });
 };
 
