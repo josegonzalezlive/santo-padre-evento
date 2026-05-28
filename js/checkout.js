@@ -406,6 +406,7 @@ async function syncToSheets(order) {
     name: order.name,
     email: order.email,
     phone: order.phone,
+    address: order.orderType === 'delivery' ? `${order.address1} ${order.address2 ? order.address2 : ''} (Ref: ${order.reference ? order.reference : 'N/A'})` : 'Retiro en Local/Pickup',
     details: itemsDetail,
     total: total,
     payment: order.payment.toUpperCase() + (order.txHash ? ` (${order.txHash.slice(0,8)}...)` : '')
