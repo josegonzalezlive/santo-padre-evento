@@ -9,6 +9,14 @@ let cart = [];
     const expires = new Date();
     expires.setTime(expires.getTime() + (30 * 24 * 60 * 60 * 1000));
     document.cookie = `sp_referral=${encodeURIComponent(refId)};expires=${expires.toUTCString()};path=/`;
+    
+    // Redirect to cuenta.html if not already there, removing the query param for a cleaner URL
+    if (!window.location.pathname.includes('cuenta.html')) {
+      window.location.href = 'cuenta.html';
+    } else {
+      // If already in cuenta.html, just remove the query param from URL without reloading
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
   }
 })();
 

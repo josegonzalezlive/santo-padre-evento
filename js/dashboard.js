@@ -1522,6 +1522,90 @@
       return null;
     }
 
+    // Mostrar el banner del referido si existe
+    async function checkAndShowReferralBanner() {
+      const refId = getCookie("sp_referral");
+      if (!refId || isMock) return;
+
+      const checkDb = setInterval(async () => {
+        if (dbService) {
+          clearInterval(checkDb);
+          try {
+            const { doc, getDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+            const docRef = doc(dbService, "users", refId);
+            const snap = await getDoc(docRef);
+            if (snap.exists()) {
+              const data = snap.data();
+              const name = data.name || "Alguien";
+              const photoUrl = data.photoURL || "https://ui-avatars.com/api/?name=" + encodeURIComponent(name) + "&background=random";
+              
+              const banner = document.createElement("div");
+              banner.className = "referral-banner";
+              banner.innerHTML = `
+                <img src="${photoUrl}" alt="${name}">
+                <span>${name} te ha invitado</span>
+              `;
+              
+              // Estilos embebidos para el banner (tipo Skool)
+              const style = document.createElement("style");
+              style.innerHTML = `
+                .referral-banner {
+                  position: fixed;
+                  top: 20px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  background: white;
+                  border-radius: 50px;
+                  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                  display: flex;
+                  align-items: center;
+                  padding: 8px 24px 8px 8px;
+                  z-index: 99999;
+                  font-family: var(--font-primary, sans-serif);
+                  color: #111;
+                  animation: slideDownRef 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+                }
+                .referral-banner img {
+                  width: 32px;
+                  height: 32px;
+                  border-radius: 50%;
+                  object-fit: cover;
+                  margin-right: 12px;
+                }
+                .referral-banner span {
+                  font-weight: 700;
+                  font-size: 15px;
+                }
+                @keyframes slideDownRef {
+                  0% { top: -100px; opacity: 0; }
+                  100% { top: 20px; opacity: 1; }
+                }
+                @media (max-width: 600px) {
+                  .referral-banner {
+                    width: 90%;
+                    padding: 8px 16px 8px 8px;
+                  }
+                  .referral-banner span {
+                    font-size: 14px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                  }
+                }
+              `;
+              document.head.appendChild(style);
+              document.body.appendChild(banner);
+            }
+          } catch (e) {
+            console.error("Error cargando banner de referido:", e);
+          }
+        }
+      }, 200);
+    }
+    
+    // Ejecutar el check del banner
+    checkAndShowReferralBanner();
+
     // Obtener perfil en BD (centralizado)
     async function getOrCreateProfile(user) {
       const userRef = { collection: "users", id: user.uid };
