@@ -1,9 +1,10 @@
-const CACHE_NAME = 'santopadre-cache-v1.61';
+const CACHE_NAME = 'santopadre-cache-v1.62';
 const urlsToCache = [
   '/',
   '/index.html',
   '/js/app.min.js',
   '/js/catalog.min.js',
+  '/js/user-profile.js',
   '/assets/logo-sm.webp',
   '/assets/logo.webp'
 ];
