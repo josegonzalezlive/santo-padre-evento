@@ -1771,7 +1771,7 @@
       }
 
       // 3. Pestaña de Cartera
-      document.getElementById("wallet-points-value").innerText = `${points} PTS`;
+      document.getElementById("wallet-points-value").innerText = `${points} $PADRE`;
       
       // Actualizar tarjeta de sellos digital (PassKit)
       const totalStamps = currentProfile.stamps || 0;
@@ -2068,7 +2068,7 @@
       const summaryCardFullName = currentProfile.name || currentUser.displayName || "Cliente SantoPadre";
       document.getElementById("summary-card-name").innerText = summaryCardFullName;
       document.getElementById("summary-card-email").innerText = currentProfile.email || currentUser.email || "";
-      document.getElementById("summary-card-points").innerText = `${points} PTS`;
+      document.getElementById("summary-card-points").innerText = `${points} $PADRE`;
       document.getElementById("profile-avatar-badge").innerText = summaryCardFullName.charAt(0).toUpperCase();
 
       // 7.2. Ficha Gastronómica Izquierda (Resumen de preferencias)
