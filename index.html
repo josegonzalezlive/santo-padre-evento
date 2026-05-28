@@ -1443,6 +1443,30 @@
       border-radius: 2px;
     }
 
+    .profile-trigger {
+      position: relative;
+    }
+
+    .profile-dot {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: 1.5px solid var(--ink);
+    }
+
+    .empty-orders, .loading-orders {
+      font-size: 13px;
+      color: var(--mute);
+      text-align: center;
+      padding: 20px;
+      border: 1px dashed var(--line);
+      border-radius: 4px;
+    }
+
     /* CART PANEL (ENTERPRISE) */
     .cart-panel {
       position: fixed;
@@ -1815,10 +1839,262 @@
       color: var(--mute);
     }
 
+    /* WISHLIST PANEL & TRIGGER STYLES */
+    .wishlist-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 500px;
+      background: var(--ink);
+      z-index: 200;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(.2, .7, .2, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: -10px 0 50px rgba(0, 0, 0, 0.8);
+      border-left: 1px solid var(--line);
+    }
+
+    .wishlist-panel.active {
+      transform: translateX(0);
+    }
+
+    .wishlist-header {
+      padding: 30px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .wishlist-header h2 {
+      font-size: 24px;
+      text-transform: uppercase;
+      font-variation-settings: "wdth" 60, "wght" 800;
+    }
+
+    .close-wishlist {
+      background: none;
+      border: none;
+      color: var(--bone);
+      cursor: pointer;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+    
+    .close-wishlist:hover {
+      color: var(--accent);
+    }
+
+    .wishlist-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 30px;
+    }
+
+    .wishlist-item {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wishlist-item img {
+      width: 80px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 4px;
+      background: var(--line);
+    }
+
+    .wishlist-item-info {
+      flex: 1;
+    }
+
+    .wishlist-item-info h4 {
+      font-size: 16px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      font-variation-settings: "wdth" 70, "wght" 800;
+    }
+
+    .wishlist-item-info p {
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .wishlist-item-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .wishlist-item-actions .add-to-cart-btn {
+      padding: 8px 12px;
+      background: var(--accent);
+      color: var(--ink);
+      border: none;
+      border-radius: 4px;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 900;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .wishlist-item-actions .add-to-cart-btn:hover {
+      background: var(--bone);
+    }
+
+    .wishlist-item-actions .remove-item-btn {
+      padding: 8px 12px;
+      background: none;
+      border: 1px solid var(--line);
+      color: var(--mute);
+      border-radius: 4px;
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .wishlist-item-actions .remove-item-btn:hover {
+      background: rgba(234, 67, 53, 0.1);
+      color: #ea4335;
+      border-color: #ea4335;
+    }
+
+    .wishlist-empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--mute);
+    }
+
+    .wishlist-empty-state .icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .wishlist-empty-state p {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* HEADER WISHLIST BUTTON BADGE */
+    .wishlist-trigger {
+      position: relative;
+    }
+
+    .wishlist-count-badge {
+      position: absolute;
+      top: 15px;
+      right: 6px;
+      min-width: 8px;
+      height: 16px;
+      padding: 0 5px;
+      background: #dcfe54;
+      color: var(--ink);
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #dcfe54;
+    }
+
+    /* PRODUCT CARD HEART BADGE */
+    .wishlist-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(4, 28, 20, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--bone);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 15;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .wishlist-btn:hover {
+      background: rgba(4, 28, 20, 0.9);
+      color: var(--bone);
+      transform: scale(1.1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .wishlist-btn.in-wishlist {
+      background: #dcfe54;
+      color: #000000;
+      border-color: #dcfe54;
+    }
+
+    .wishlist-btn.in-wishlist:hover {
+      background: #dcfe54;
+      color: #000000;
+      border-color: #dcfe54;
+      transform: scale(1.1);
+      box-shadow: 0 4px 10px rgba(220, 254, 84, 0.4);
+    }
+
+    .wishlist-btn svg {
+      fill: none !important;
+      stroke: var(--bone) !important;
+      transition: all 0.3s ease;
+    }
+
+    .wishlist-btn:hover svg {
+      fill: none !important;
+      stroke: var(--bone) !important;
+    }
+
+    .wishlist-btn.in-wishlist svg {
+      fill: #000000 !important;
+      stroke: #000000 !important;
+    }
+
+    /* WISHLIST LOGIN MODAL */
+    #wishlist-register-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(4, 28, 20, 0.8);
+      backdrop-filter: blur(5px);
+      z-index: 1100;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    #wishlist-register-modal.open {
+      display: flex;
+    }
+
     @media (max-width: 768px) {
       .cart-panel {
         width: 100%;
         max-width: 100%;
+      }
+      .wishlist-panel {
+        width: 100%;
+        max-width: 100%;
+      }
+      .wishlist-trigger.desktop-only {
+        display: none !important;
       }
     }
 
@@ -3014,6 +3290,34 @@
     <!-- Modal content injected -->
   </div>
 
+  <!-- WISHLIST PANEL (DRAWER) -->
+  <aside class="wishlist-panel" id="wishlist-panel">
+    <div class="wishlist-header">
+      <h2>Mi Wishlist 💛</h2>
+      <button class="close-wishlist" onclick="window.toggleWishlistPanel()">✕</button>
+    </div>
+    <div class="wishlist-items" id="wishlist-items">
+      <!-- Injected by JS -->
+    </div>
+  </aside>
+
+  <!-- WISHLIST REGISTER MODAL -->
+  <div id="wishlist-register-modal" onclick="if(event.target === this) window.closeWishlistRegisterModal();">
+    <div class="modal-content" style="max-width: 420px; text-align: center; padding: 40px 30px; background: var(--ink); border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); position: relative; width: 90%;">
+      <button onclick="window.closeWishlistRegisterModal()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--mute); cursor: pointer; font-size: 18px; font-weight: bold;">✕</button>
+      <div style="font-size: 50px; margin-bottom: 20px; filter: drop-shadow(0 2px 8px rgba(255, 103, 0, 0.3));">💛</div>
+      <h3 style="font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; text-transform: uppercase; color: var(--white); margin-bottom: 15px; letter-spacing: 0.03em;">Guarda tus Favoritos</h3>
+      <p style="color: var(--mute); font-size: 14px; line-height: 1.6; margin-bottom: 30px; font-family: 'Space Grotesk', sans-serif;">
+        Inicia sesión o regístrate en SantoPadre® para guardar platos en tu lista de deseos y acumular puntos.
+      </p>
+      <button class="google-btn" id="wishlist-google-login-btn" style="margin: 0 auto 15px auto; width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--white); color: #000; border: none; padding: 12px 20px; border-radius: 8px; font-family: 'Archivo', sans-serif; font-weight: 900; font-size: 13px; text-transform: uppercase; cursor: pointer; transition: all 0.2s;">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#EA4335" d="M12 5.04c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 1.68 14.97.6 12 .6 7.7.6 3.99 3.07 2.18 6.67l3.66 2.84C6.71 6.97 9.14 5.04 12 5.04z"/><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#34A853" d="M12 23.4c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.93 7.7 23.4 12 23.4z"/></svg>
+        <span>Entrar con Google</span>
+      </button>
+      <button onclick="window.closeWishlistRegisterModal()" style="background: none; border: none; color: var(--mute); font-size: 13px; text-decoration: underline; cursor: pointer; font-family: 'Space Grotesk', sans-serif;">Quizás más tarde</button>
+    </div>
+  </div>
+
   <!-- HERO -->
   <section class="hero" id="hero">
     <div class="hero-bg">
@@ -3313,7 +3617,7 @@
             <label>
               <input type="checkbox">
               <span>Acepto recibir contenido de SantoPadre® por correo electrónico y he leído y acepto la <a
-                  href="#">Política de privacidad</a></span>
+                  href="/politica-de-privacidad.html">Política de privacidad</a></span>
             </label>
           </div>
         </div>
@@ -3343,8 +3647,9 @@
         <div class="col" onclick="if(window.innerWidth <= 700) this.classList.toggle('active')">
           <h3>Legal <span class="icon"></span></h3>
           <ul>
-            <li><a href="#">Privacidad</a></li>
-            <li><a href="#">Términos</a></li>
+            <li><a href="/politica-de-privacidad.html">Privacidad</a></li>
+            <li><a href="/terminos-y-condiciones.html">Términos</a></li>
+            <li><a href="/politica-de-devoluciones.html">Devoluciones</a></li>
           </ul>
         </div>
       </div>
@@ -3394,8 +3699,9 @@
     <link rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@50..125,300..900&family=Syne:wght@400..800&family=Space+Grotesk:wght@300..700&family=Gilda+Display&display=swap">
   </noscript>
-  <script src="js/catalog.min.js?v=1.40"></script>
-  <script src="js/app.min.js?v=1.40"></script>
+  <script src="js/catalog.min.js?v=1.45"></script>
+  <script src="js/app.min.js?v=1.45"></script>
+  <script type="module" src="js/user-profile.js?v=1.45"></script>
   <script>
     // Google Fonts: inject via JS to avoid render-blocking
     (function () {

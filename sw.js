@@ -1,15 +1,16 @@
-const CACHE_NAME = 'santopadre-cache-v1';
+const CACHE_NAME = 'santopadre-cache-v1.60';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/css/index.css',
   '/js/app.min.js',
   '/js/catalog.min.js',
+  '/js/user-profile.js',
   '/assets/logo-sm.webp',
   '/assets/logo.webp'
 ];
 
 self.addEventListener('install', event => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => {
@@ -65,6 +66,6 @@ self.addEventListener('activate', event => {
           }
         })
       );
-    })
+    }).then(() => self.clients.claim())
   );
 });

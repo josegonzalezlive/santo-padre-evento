@@ -16,7 +16,8 @@ const CATALOG = {
           hasVariants: true,
           variants: [
             { id: "v1", name: "Ración 6 Unidades", price: 12.00 },
-            { id: "v2", name: "Ración 12 Unidades", price: 22.00, recommended: true, recommendedLabel: "Ideal para compartir" }
+            { id: "v2", name: "Ración 12 Unidades", price: 21.00, recommended: true, recommendedLabel: "Ideal para compartir" },
+            { id: "v3", name: "Bandeja Fiesta 24U", price: 38.00, recommendedLabel: "Mejor Valor" }
           ],
           badges: ["NUEVO"],
           tags: ["💎 PREMIUM", "🔥 CRUNCH EXTRA", "🐷 COCCIÓN LENTA"],
@@ -33,7 +34,8 @@ const CATALOG = {
           hasVariants: true,
           variants: [
             { id: "v1", name: "Ración 6 Unidades", price: 10.50 },
-            { id: "v2", name: "Ración 12 Unidades", price: 19.00, recommended: true, recommendedLabel: "Upsell Sugerido" }
+            { id: "v2", name: "Ración 12 Unidades", price: 18.00, recommended: true, recommendedLabel: "Upsell Sugerido" },
+            { id: "v3", name: "Bandeja Fiesta 24U", price: 34.00, recommendedLabel: "Mejor Valor" }
           ],
           badges: [],
           tags: ["⭐ EL CLÁSICO", "✅ OPCIÓN SEGURA", "🧀 QUESO FUNDIDO"],
@@ -145,15 +147,15 @@ const CATALOG = {
           description: "Tortilla de trigo de 1kg (aprox) rellena de arroz, pico, frijoles, guacamole y queso. Elige tu proteína.",
           allergens: "Glúten, Lácteos",
           video: "https://res.cloudinary.com/dxishpwhl/video/upload/Burritos_jnqglx.mp4",
-          price: 17.00,
+          price: 14.50,
           hasVariants: true,
           variants: [
-            { id: "v1", name: "Proteína: Punta Trasera", price: 17.00 },
-            { id: "v2", name: "Proteína: Cerdo al Pastor", price: 17.00 },
-            { id: "v3", name: "Proteína: Carne Chilli", price: 17.00 },
-            { id: "v4", name: "Proteína: Pollo", price: 17.00 },
-            { id: "v5", name: "Proteína: Birria", price: 17.00 },
-            { id: "v6", name: "Proteína: Cochinita", price: 17.00 }
+            { id: "v1", name: "Proteína: Punta Trasera", price: 18.00 },
+            { id: "v2", name: "Proteína: Cerdo al Pastor", price: 14.50 },
+            { id: "v3", name: "Proteína: Carne Chilli", price: 14.50 },
+            { id: "v4", name: "Proteína: Pollo", price: 14.50 },
+            { id: "v5", name: "Proteína: Birria", price: 18.00 },
+            { id: "v6", name: "Proteína: Cochinita", price: 14.50 }
           ],
           tags: ["🌯 FORMATO XXL", "🔋 ENERGÍA PURA", "🌯 TODO TERRENO"],
           hasExtras: true
@@ -188,7 +190,7 @@ const CATALOG = {
           ],
           tags: ["💧 HIDRATACIÓN", "👪 TAMAÑO FAMILIAR", "💰 AHORRA MÁS"]
         },
-        { id: "coca-cola", name: "Coca Cola", description: "El clásico carbonatado que no necesita presentación ni perdón.", price: 1.50, image: "assets/menu/coca-cola.avif", tags: ["🧊 BIEN FRÍA"] },
+        { id: "coca-cola", name: "Coca Cola", description: "El clásico carbonatado que no necesita presentación ni perdón.", price: 2.50, image: "assets/menu/coca-cola.avif", tags: ["🧊 BIEN FRÍA"] },
         { id: "cerveza", name: "Cerveza", description: "Una rubia bien fría para apagar el fuego del chile y brindar por la vida.", price: 2.20, video: "https://res.cloudinary.com/dxishpwhl/video/upload/Cerveza_gzoxky.mp4", tags: ["🍺 MARIDAJE PERFECTO"] },
         { id: "lipton", name: "Lipton", description: "Té frío para los que buscan un poco de calma cítrica en medio del caos.", price: 3.00, image: "assets/menu/lipton.avif", tags: ["🍃 REFRESCANTE"] },
         { id: "gatorade", name: "Gatorade", description: "Electrolitos sagrados para recuperar el alma después de una buena tanda de tacos.", price: 3.20, image: "assets/menu/gatorade.avif", tags: ["⚡ ELECTROLITOS"] }
@@ -279,7 +281,7 @@ const CATALOG = {
   },
   upsellProducts: [
     { id: "agua", label: "¿Un agua mineral?", price: 2.00, image: "assets/menu/agua.avif" },
-    { id: "coca-cola", label: "¿Le añades una Coca Cola?", price: 1.50, image: "assets/menu/coca-cola.avif" },
+    { id: "coca-cola", label: "¿Le añades una Coca Cola?", price: 2.50, image: "assets/menu/coca-cola.avif" },
     { id: "lipton", label: "¿Un Lipton frío?", price: 3.00, image: "assets/menu/lipton.avif" },
     { id: "gatorade", label: "¿Gatorade para reponer?", price: 3.20, image: "assets/menu/gatorade.avif" },
     { id: "nachos", label: "¿Y unos Nachos para acompañar?", price: 7.25, image: "assets/menu/nachos.avif" }
@@ -307,6 +309,37 @@ const CATALOG = {
     { q: "TENGO UNA IDEA LOCA.", a: "Somos más que una taquería, somos modernidad. Si tienes algo que nos vuele la cabeza: hola@santopadre.com." },
     { q: "QUIERO HACER UN PEDIDO MUY GRANDE.", a: "Si quieres impresionar a tu empresa o equipo con un pedido masivo, completa nuestro formulario en https://form.typeform.com/to/bNVBTmFR y te ayudaremos a gestionar tu banquete." }
   ],
+  loyaltyProgram: {
+    points: {
+      earningRate: 10,
+      rewards: [
+        { points: 1000, label: "Bebida Gratis a Elección" },
+        { points: 3500, label: "Nachos Pequeños Gratis" },
+        { points: 7500, label: "Flautas de Pollo (6U) Gratis" }
+      ]
+    },
+    stampCard: {
+      name: "El Ascenso del Pecador",
+      totalStamps: 5,
+      stampsPerTier: 5,
+      totalTiers: 5,
+      minTicket: 12.00,
+      milestones: [
+        { tier: 1, name: "El Iniciado", reward: "Bebida Premium Gratis", cogs: 0.75 },
+        { tier: 2, name: "El Fiel", reward: "Postre Sorpresa del Chef", cogs: 1.20 },
+        { tier: 3, name: "El Discípulo", reward: "Nachos PEQ + Bebida Gratis", cogs: 2.93 },
+        { tier: 4, name: "El Profeta", reward: "Tacos (3U) + Bebida Gratis", cogs: 4.20 },
+        { tier: 5, name: "El Santo", reward: "Cena Secreta para 2 + 2 Bebidas", cogs: 3.00 }
+      ]
+    },
+    referrals: {
+      headline: "Salva a un amigo del hambre",
+      friendReward: "Bebida Gratis (En su primer pedido > $15)",
+      referrerReward: "200 Puntos de Fidelidad",
+      friendCogs: 0.75,
+      referrerCogs: 0
+    }
+  },
   info: {
     whatsapp: "584225540246",
     hours: "7:30 PM - 10:30 PM · Lunes a Sábado",
