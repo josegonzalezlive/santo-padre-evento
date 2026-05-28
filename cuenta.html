@@ -315,14 +315,14 @@
               
               <!-- Botón Agregar Fondos -->
               <div style="margin-top: 20px; text-align: center;">
-                <a href="checkout.html" class="quest-btn" style="background: var(--lime); color: var(--ink-3); font-weight: 800; width: 100%; height: 48px; font-size: 14px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-decoration: none; text-transform: uppercase; letter-spacing: 0.05em; gap: 10px;">
+                <button onclick="window.openAddFundsModal()" class="quest-btn" style="background: var(--lime); color: var(--ink-3); border: none; cursor: pointer; font-family: var(--archivo); font-weight: 800; width: 100%; height: 48px; font-size: 14px; border-radius: 8px; display: flex; align-items: center; justify-content: center; text-transform: uppercase; letter-spacing: 0.05em; gap: 10px;">
                   <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
                     <rect x="2" y="4" width="20" height="16" rx="2"></rect>
                     <line x1="12" y1="4" x2="12" y2="20"></line>
                     <line x1="8" y1="12" x2="16" y2="12"></line>
                   </svg>
                   Agregar Fondos
-                </a>
+                </button>
               </div>
 
               <div class="welcome-box" style="text-align: left; align-items: flex-start; gap: 10px; margin-top: 20px;">
@@ -1311,15 +1311,50 @@
       </div>
 
       <!-- CTA button -->
-      <button onclick="const m=document.getElementById('reward-popup-modal');m.style.opacity='0';setTimeout(()=>m.style.display='none',400);" style="background: var(--lime); color: var(--ink); border: none; padding: 13px 30px; font-weight: 900; font-family: var(--syne); font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 10px; cursor: pointer; width: 100%; transition: transform 0.15s; margin-bottom: 15px;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">¡Entendido! 🤘</button>
+      <button onclick="const m=document.getElementById('reward-popup-modal');m.style.opacity='0';setTimeout(()=>m.style.display='none',400);" style="background: var(--lime); color: var(--ink-3); font-family: var(--archivo); font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; padding: 14px 28px; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; width: 100%; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 15px rgba(220,254,84,0.4)';" onmouseout="this.style.transform='none'; this.style.boxShadow='none';">¡Genial, gracias!</button>
       
       <!-- Ver más tarde link -->
-      <div style="text-align: center;">
+      <div style="text-align: center; margin-top: 15px;">
         <a href="#" onclick="event.preventDefault(); const m=document.getElementById('reward-popup-modal');m.style.opacity='0';setTimeout(()=>m.style.display='none',400); if(window.switchTab) switchTab('canjear');" style="color: var(--mute); font-family: var(--archivo); font-size: 13px; text-decoration: underline; cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--mute)'">Ver más tarde</a>
       </div>
     </div>
   </div>
 
+  <!-- Add Funds Modal -->
+  <div id="add-funds-modal" onclick="if(event.target===this) window.closeAddFundsModal();" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.3s ease;">
+    <div style="background: var(--ink-2); border: 1px solid var(--line); border-radius: 20px; padding: 30px; text-align: left; max-width: 400px; width: 92%; position: relative; transform: scale(0.95); transition: transform 0.3s ease;" id="add-funds-content">
+      <button onclick="window.closeAddFundsModal()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; color: var(--mute); font-size: 24px; cursor: pointer;">&times;</button>
+      <h2 style="font-family: var(--syne); color: var(--white); font-size: 20px; margin-bottom: 20px;">Agregar Fondos</h2>
+      
+      <div style="margin-bottom: 20px;">
+        <label style="display: block; color: var(--mute); font-size: 12px; margin-bottom: 8px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em;">Cantidad a recargar</label>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 15px;" id="add-funds-amount-grid">
+          <button type="button" class="amount-btn active" onclick="window.selectFundAmount(this, 10)" style="padding: 10px; background: rgba(220, 254, 84, 0.1); border: 1px solid var(--lime); color: var(--lime); border-radius: 8px; font-weight: bold; cursor: pointer; transition: all 0.2s;">$10</button>
+          <button type="button" class="amount-btn" onclick="window.selectFundAmount(this, 25)" style="padding: 10px; background: var(--ink); border: 1px solid var(--line); color: var(--bone); border-radius: 8px; font-weight: bold; cursor: pointer; transition: all 0.2s;">$25</button>
+          <button type="button" class="amount-btn" onclick="window.selectFundAmount(this, 50)" style="padding: 10px; background: var(--ink); border: 1px solid var(--line); color: var(--bone); border-radius: 8px; font-weight: bold; cursor: pointer; transition: all 0.2s;">$50</button>
+        </div>
+        <input type="number" id="add-funds-custom-amount" placeholder="Otra cantidad (USD)..." onfocus="window.clearAmountSelection()" style="width: 100%; padding: 14px; background: var(--ink); border: 1px solid var(--line); color: var(--white); border-radius: 8px; font-family: var(--space); outline: none;">
+      </div>
+
+      <div style="margin-bottom: 25px;">
+        <label style="display: block; color: var(--mute); font-size: 12px; margin-bottom: 8px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em;">Método de Pago</label>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <label style="display: flex; align-items: center; gap: 12px; padding: 14px; border: 1px solid var(--lime); border-radius: 8px; background: rgba(220,254,84,0.05); cursor: pointer; transition: all 0.2s;" onclick="window.selectPaymentMethod(this)">
+            <input type="radio" name="payment-method" checked style="accent-color: var(--lime); width: 18px; height: 18px;">
+            <span style="color: var(--white); font-weight: 500;">Tarjeta de Crédito / Débito</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 12px; padding: 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--ink); cursor: pointer; transition: all 0.2s;" onclick="window.selectPaymentMethod(this)">
+            <input type="radio" name="payment-method" style="accent-color: var(--lime); width: 18px; height: 18px;">
+            <span style="color: var(--bone); font-weight: 500;">Apple Pay / Google Pay</span>
+          </label>
+        </div>
+      </div>
+
+      <button onclick="alert('Redirigiendo a pasarela de pagos con el monto seleccionado...'); window.closeAddFundsModal();" style="width: 100%; padding: 16px; background: var(--lime); color: var(--ink-3); font-family: var(--archivo); font-weight: 800; font-size: 14px; border: none; border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em; transition: opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+        Proceder al Pago
+      </button>
+    </div>
+  </div>
 
 </body>
 </html>

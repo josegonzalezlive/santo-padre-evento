@@ -2296,3 +2296,58 @@
 
     window.switchTab = window.switchTopTab;
 
+    // === ADD FUNDS MODAL LOGIC ===
+    window.openAddFundsModal = function() {
+      const m = document.getElementById('add-funds-modal');
+      if (m) {
+        m.style.display = 'flex';
+        // force reflow
+        void m.offsetWidth;
+        m.style.opacity = '1';
+      }
+    };
+
+    window.closeAddFundsModal = function() {
+      const m = document.getElementById('add-funds-modal');
+      if (m) {
+        m.style.opacity = '0';
+        setTimeout(() => m.style.display = 'none', 300);
+      }
+    };
+
+    window.selectFundAmount = function(btn, amount) {
+      document.querySelectorAll('.amount-btn').forEach(b => {
+        b.classList.remove('active');
+        b.style.background = 'var(--ink)';
+        b.style.color = 'var(--bone)';
+        b.style.borderColor = 'var(--line)';
+      });
+      btn.classList.add('active');
+      btn.style.background = 'rgba(220, 254, 84, 0.1)';
+      btn.style.color = 'var(--lime)';
+      btn.style.borderColor = 'var(--lime)';
+      
+      const customInput = document.getElementById('add-funds-custom-amount');
+      if (customInput) customInput.value = '';
+    };
+
+    window.clearAmountSelection = function() {
+      document.querySelectorAll('.amount-btn').forEach(b => {
+        b.classList.remove('active');
+        b.style.background = 'var(--ink)';
+        b.style.color = 'var(--bone)';
+        b.style.borderColor = 'var(--line)';
+      });
+    };
+
+    window.selectPaymentMethod = function(labelEl) {
+      // Find all labels in the same group and reset them
+      const parent = labelEl.parentElement;
+      parent.querySelectorAll('label').forEach(lbl => {
+        lbl.style.borderColor = 'var(--line)';
+        lbl.style.background = 'var(--ink)';
+      });
+      // Style the selected one
+      labelEl.style.borderColor = 'var(--lime)';
+      labelEl.style.background = 'rgba(220,254,84,0.05)';
+    };
