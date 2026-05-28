@@ -301,7 +301,7 @@
           <div class="wallet-grid-layout" style="grid-template-columns: 1fr;">
             <!-- Columna Única: Puntos y Explicación -->
             <div class="wallet-left-column" style="max-width: 600px; margin: 0 auto;">
-              <div class="wallet-card">
+              <div class="wallet-card" style="margin-bottom: 20px;">
                 <div class="wallet-balance">
                   <h3>Balance de Recompensas</h3>
                   <div class="balance-value" id="wallet-points-value">0 PTS</div>
@@ -310,6 +310,72 @@
                 <div class="wallet-brand" style="display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between;">
                   <img src="assets/logo-sm.webp" alt="SantoPadre®" style="height: 24px; width: auto; object-fit: contain;">
                   <p style="margin-top: 4px;">Parroquia VIP Member</p>
+                </div>
+              </div>
+
+              <!-- SantoPadre Web3 Engine (Solana simulation) -->
+              <div id="solana-wallet-panel" style="background: rgba(18, 18, 18, 0.6); border: 1px solid var(--line); border-radius: 16px; padding: 20px; text-align: left; margin-bottom: 20px; backdrop-filter: blur(10px); position: relative; overflow: hidden; transition: all 0.3s ease;">
+                <!-- Glowing background accent -->
+                <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: rgba(171, 159, 242, 0.08); filter: blur(40px); border-radius: 50%; pointer-events: none;"></div>
+                
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <svg viewBox="0 0 397 311" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M64.6 237.9c-2.4-2.4-5.7-3.8-9.1-3.8H0l64.6 64.6c2.4 2.4 5.7 3.8 9.1 3.8h55.5l-64.6-64.6zM332.4 64.6L397 0h-55.5c-3.4 0-6.7 1.4-9.1 3.8L267.8 68.4c-2.4 2.4-2.4 6.2 0 8.5l9.1 9.1c2.4 2.4 6.2 2.4 8.5 0L332.4 64.6zM332.4 237.9L397 173.3h-55.5c-3.4 0-6.7 1.4-9.1 3.8l-64.6 64.6c-2.4 2.4-2.4 6.2 0 8.5l9.1 9.1c2.4 2.4 6.2 2.4 8.5 0l47-47zM64.6 64.6c-2.4-2.4-5.7-3.8-9.1-3.8H0l64.6 64.6c2.4 2.4 5.7 3.8 9.1 3.8h55.5l-64.6-64.6z" fill="#AB9FF2"/>
+                    </svg>
+                    <span style="font-family: var(--space); font-size: 11px; font-weight: bold; color: #AB9FF2; letter-spacing: 0.1em; text-transform: uppercase;">Solana Web3 Engine</span>
+                  </div>
+                  <span id="wallet-status-tag" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: #ef4444; font-size: 9px; font-family: var(--space); font-weight: bold; padding: 3px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 4px;">
+                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #ef4444; display: inline-block;"></span> Desconectado
+                  </span>
+                </div>
+
+                <!-- Desconectado State View -->
+                <div id="wallet-disconnected-view" style="display: block; text-align: center; padding: 15px 10px;">
+                  <p style="color: var(--bone); font-size: 13px; line-height: 1.6; margin-bottom: 15px;">Conecta tu wallet de Solana para ver tus balances descentralizados de $PADRE y $PADRE-USDC.</p>
+                  <button onclick="connectSimulatedWallet()" style="background: rgba(171, 159, 242, 0.15); border: 1px solid #AB9FF2; color: #AB9FF2; padding: 10px 20px; font-size: 13px; font-family: var(--syne); font-weight: bold; border-radius: 8px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='rgba(171, 159, 242, 0.25)'" onmouseout="this.style.background='rgba(171, 159, 242, 0.15)'">
+                    Conectar Wallet de Solana ⚡
+                  </button>
+                </div>
+
+                <!-- Conectado State View -->
+                <div id="wallet-connected-view" style="display: none;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; background: var(--ink-2); padding: 8px 12px; border-radius: 8px; margin-bottom: 15px; border: 1px solid var(--line);">
+                    <span id="wallet-address-display" style="font-family: var(--space); font-size: 11px; color: var(--mute); word-break: break-all;">SantoPadre...7xY9</span>
+                    <button onclick="copyWalletAddress()" style="background: none; border: none; color: var(--lime); font-size: 11px; font-family: var(--space); cursor: pointer; padding: 2px 5px; font-weight: bold;">[Copiar]</button>
+                  </div>
+
+                  <!-- Dual Balance Display -->
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                    <div style="background: var(--ink-2); border: 1px solid var(--line); padding: 12px; border-radius: 8px; text-align: left;">
+                      <span style="font-size: 9px; color: var(--mute); display: block; text-transform: uppercase; font-family: var(--space); font-weight: bold; letter-spacing: 0.05em; margin-bottom: 4px;">Puntos $PADRE</span>
+                      <strong id="sol-padre-balance" style="font-size: 16px; color: var(--white); font-family: var(--space);">0 $PADRE</strong>
+                      <span style="font-size: 9px; color: var(--mute); display: block; margin-top: 2px;">Lealtad Web3</span>
+                    </div>
+                    <div style="background: var(--ink-2); border: 1px solid var(--line); padding: 12px; border-radius: 8px; text-align: left;">
+                      <span style="font-size: 9px; color: var(--mute); display: block; text-transform: uppercase; font-family: var(--space); font-weight: bold; letter-spacing: 0.05em; margin-bottom: 4px;">Saldo $PADRE-USDC</span>
+                      <strong id="sol-usdc-balance" style="font-size: 16px; color: var(--lime); font-family: var(--space);">$0.00 USDC</strong>
+                      <span style="font-size: 9px; color: var(--mute); display: block; margin-top: 2px;">Prepago 1:1 USD</span>
+                    </div>
+                  </div>
+
+                  <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <!-- Ver QR button -->
+                    <button onclick="showWalletQR()" style="flex: 1; background: var(--lime); color: var(--ink-3); border: none; padding: 10px; border-radius: 8px; font-size: 12px; font-family: var(--syne); font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><rect x="7" y="7" width="3" height="3"></rect><rect x="14" y="7" width="3" height="3"></rect><rect x="7" y="14" width="3" height="3"></rect><rect x="14" y="14" width="3" height="3"></rect></svg>
+                      Ver QR de Canje
+                    </button>
+                    <!-- Simulated top up points -->
+                    <button onclick="simulateConsumption()" style="flex: 1; background: var(--ink-2); border: 1px solid var(--line); color: var(--bone); padding: 10px; border-radius: 8px; font-size: 12px; font-family: var(--syne); font-weight: bold; cursor: pointer;">
+                      Simular Compra 🍔
+                    </button>
+                  </div>
+
+                  <!-- Blockchain transactions feed -->
+                  <h4 style="font-size: 10px; text-transform: uppercase; color: var(--mute); font-family: var(--space); font-weight: bold; letter-spacing: 0.1em; margin-bottom: 8px; border-bottom: 1px solid var(--line); padding-bottom: 4px;">Transacciones en Solana (Simulador)</h4>
+                  <div id="solana-transactions-feed" style="max-height: 120px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px;">
+                    <div style="font-size: 11px; color: var(--mute); text-align: center; padding: 10px 0;">No hay transacciones recientes en la red.</div>
+                  </div>
                 </div>
               </div>
               
@@ -1394,6 +1460,145 @@
       
     </div>
   </div>
+  <!-- Solana QR Modal -->
+  <div id="solana-qr-modal" onclick="if(event.target===this){this.style.opacity='0';setTimeout(()=>this.style.display='none',400);}" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10001; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; backdrop-filter: blur(8px); opacity: 0; transition: opacity 0.4s ease;">
+    <div style="background: var(--ink); border: 1px solid var(--line); border-radius: 20px; padding: 30px; text-align: center; max-width: 360px; width: 92%; position: relative; box-shadow: 0 10px 40px rgba(0,0,0,0.8); transform: scale(1); transition: transform 0.4s ease;">
+      <!-- Close button -->
+      <button onclick="const m=document.getElementById('solana-qr-modal');m.style.opacity='0';setTimeout(()=>m.style.display='none',400);" style="position: absolute; top: 14px; right: 18px; background: none; border: none; color: var(--mute); font-size: 26px; cursor: pointer; line-height: 1;">&times;</button>
+      
+      <h3 style="font-family: var(--syne); color: var(--white); font-size: 18px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.05em;">Código QR de Canje</h3>
+      <p style="color: var(--mute); font-size: 11px; margin-bottom: 20px;">Muestra este código al cajero para pagar con tu saldo o canjear tus puntos $PADRE</p>
+      
+      <!-- QR Image Container -->
+      <div style="background: white; padding: 15px; border-radius: 12px; display: inline-block; margin-bottom: 20px; box-shadow: 0 0 20px rgba(171, 159, 242, 0.2);">
+        <img id="solana-qr-img" src="" alt="Solana QR" style="width: 180px; height: 180px; display: block;">
+      </div>
+      
+      <div style="background: var(--ink-2); padding: 10px; border-radius: 8px; border: 1px solid var(--line); margin-bottom: 20px;">
+        <span style="font-size: 10px; color: var(--mute); display: block; text-transform: uppercase; font-family: var(--space); margin-bottom: 2px;">Dirección Wallet</span>
+        <strong style="font-size: 12px; color: var(--white); font-family: var(--space);">SantoPadre7xY9vB42...sol</strong>
+      </div>
+      
+      <button onclick="const m=document.getElementById('solana-qr-modal');m.style.opacity='0';setTimeout(()=>m.style.display='none',400);" style="background: var(--lime); color: var(--ink-3); border: none; padding: 12px; font-weight: 800; font-family: var(--syne); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 8px; cursor: pointer; width: 100%;">
+        Listo
+      </button>
+    </div>
+  </div>
+
+  <!-- Web3 Simulation Script -->
+  <script>
+    let walletConnected = false;
+    let padreBalance = 350;
+    let usdcBalance = 25.00;
+    const walletAddress = "SantoPadre7xY9vB42J8wK3qRt6mNs5uLp4vE9t";
+
+    function connectSimulatedWallet() {
+      walletConnected = true;
+      
+      // Update Tag
+      const tag = document.getElementById('wallet-status-tag');
+      tag.style.background = 'rgba(34, 197, 94, 0.1)';
+      tag.style.borderColor = 'rgba(34, 197, 94, 0.2)';
+      tag.style.color = '#22c55e';
+      tag.innerHTML = '<span style="width: 6px; height: 6px; border-radius: 50%; background: #22c55e; display: inline-block; animation: pulse 1.5s infinite;"></span> Conectado';
+
+      // Switch Views
+      document.getElementById('wallet-disconnected-view').style.display = 'none';
+      document.getElementById('wallet-connected-view').style.display = 'block';
+
+      // Set Balances
+      // Try to read current points from main card if they exist
+      const mainPointsEl = document.getElementById('wallet-points-value');
+      if (mainPointsEl) {
+        const val = parseInt(mainPointsEl.innerText);
+        if (!isNaN(val) && val > 0) {
+          padreBalance = val;
+        } else {
+          mainPointsEl.innerText = padreBalance + " PTS";
+        }
+      }
+      
+      updateBalancesUI();
+
+      // Clear Tx Feed and Add Conectado Tx
+      const feed = document.getElementById('solana-transactions-feed');
+      feed.innerHTML = '';
+      addSimulatedTx('Conexión Wallet', 'Privy Wallet creada y enlazada', 'Éxito');
+    }
+
+    function updateBalancesUI() {
+      document.getElementById('sol-padre-balance').innerText = padreBalance + " $PADRE";
+      document.getElementById('sol-usdc-balance').innerText = "$" + usdcBalance.toFixed(2) + " USDC";
+      
+      // Also update main layout PTS
+      const mainPointsEl = document.getElementById('wallet-points-value');
+      if (mainPointsEl) {
+        mainPointsEl.innerText = padreBalance + " PTS";
+      }
+    }
+
+    function copyWalletAddress() {
+      navigator.clipboard.writeText(walletAddress);
+      alert("Dirección de Wallet copiada al portapapeles: " + walletAddress);
+    }
+
+    function showWalletQR() {
+      const qrImg = document.getElementById('solana-qr-img');
+      const qrData = `solana:${walletAddress}?amount=${usdcBalance}&label=SantoPadre%20Prepago`;
+      qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(qrData)}`;
+      
+      const modal = document.getElementById('solana-qr-modal');
+      modal.style.display = 'flex';
+      setTimeout(() => modal.style.opacity = '1', 10);
+    }
+
+    function simulateConsumption() {
+      if (usdcBalance < 5.00) {
+        alert("Saldo de prepago insuficiente. Recarga tu saldo en el botón 'Agregar Fondos'.");
+        return;
+      }
+      
+      usdcBalance -= 5.00;
+      padreBalance += 50; // Earn 10 points per dollar
+      
+      updateBalancesUI();
+      addSimulatedTx('Compra POS', '-$5.00 USDC / +50 $PADRE', 'Éxito');
+    }
+
+    function addSimulatedTx(type, desc, status) {
+      const feed = document.getElementById('solana-transactions-feed');
+      const txHash = Math.random().toString(36).substring(2, 10).toUpperCase();
+      const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      
+      const txRow = document.createElement('div');
+      txRow.style.cssText = "display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.04);";
+      txRow.innerHTML = `
+        <div style="text-align: left;">
+          <strong style="color: var(--white); font-size: 11px; display: block;">${type}</strong>
+          <span style="color: var(--mute); font-size: 9px; font-family: var(--space);">${txHash}...sol</span>
+        </div>
+        <div style="text-align: right;">
+          <span style="color: ${desc.includes('-') ? '#ff4d4d' : 'var(--lime)'}; font-size: 11px; font-weight: bold; display: block;">${desc}</span>
+          <span style="color: var(--mute); font-size: 9px;">${time} | <span style="color: #22c55e;">${status}</span></span>
+        </div>
+      `;
+      
+      // Remove placeholder message if it's there
+      if (feed.innerText.includes('No hay transacciones')) {
+        feed.innerHTML = '';
+      }
+      
+      feed.insertBefore(txRow, feed.firstChild);
+    }
+  </script>
+  
+  <style>
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.5; }
+    }
+  </style>
 
 </body>
 </html>
