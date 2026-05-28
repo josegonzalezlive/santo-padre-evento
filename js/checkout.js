@@ -384,7 +384,7 @@ function initFormHandler(checkoutData) {
 }
 
 async function syncToSheets(order) {
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbynJa91G-xQCCZ_Kh1yquB9ctvLMnxx_C7TnORcCASQa8tIJ8fWcUa7OYerZnJwWYNp/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwTmeaRSR49Zp9p9aprDX6LSihNBnpjfoQVKddBDEvfZwGxNkbQv-PGFKfmCx3wWPRL/exec";
   if (SCRIPT_URL.includes("TU_GOOGLE_SCRIPT_URL")) {
     console.warn("Google Sheets Script URL no configurada.");
     return;
