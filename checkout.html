@@ -151,17 +151,17 @@
           <div class="input-row">
             <div class="field">
               <label for="name">Nombre Completo</label>
-              <input type="text" id="name" required placeholder="Tu Nombre">
+              <input type="text" id="name" name="name" required placeholder="Tu Nombre">
             </div>
           </div>
           <div class="input-row">
             <div class="field">
               <label for="email">Email</label>
-              <input type="email" id="email" required placeholder="¡Tu Mejor Email!">
+              <input type="email" id="email" name="email" required placeholder="¡Tu Mejor Email!">
             </div>
             <div class="field">
               <label for="phone">Teléfono</label>
-              <input type="tel" id="phone" required placeholder="Tu Número. Atento a Whatsapp!">
+              <input type="tel" id="phone" name="phone" required placeholder="Tu Número. Atento a Whatsapp!">
             </div>
           </div>
         </section>
@@ -343,6 +343,14 @@
             <span>Subtotal</span>
             <span id="summary-subtotal">$0.00</span>
           </div>
+          <div class="total-row" id="shipping-row" style="display: none;">
+            <span>Envío</span>
+            <span id="summary-shipping">$0.00</span>
+          </div>
+          <div class="total-row" id="packaging-row" style="display: none;">
+            <span>Envases</span>
+            <span id="summary-packaging">$0.00</span>
+          </div>
           <div class="total-row" id="vip-row" style="display: none;">
             <span style="color: var(--accent);">Descuento VIP (10%)</span>
             <span id="summary-vip" style="color: var(--accent);">-$0.00</span>
@@ -367,10 +375,32 @@
       <div id="checkout-reviews" class="checkout-reviews"></div>
     </aside>
   </div>
+
+  <!-- Contenedor de Éxito (Oculto por defecto) -->
+  <div id="checkout-success" class="checkout-success" style="display: none; max-width: 600px; margin: 40px auto; text-align: center; background: var(--surface); padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--line);">
+    <h2 style="font-family: var(--syne); font-size: 32px; color: var(--bone); margin-bottom: 20px;">¡PEDIDO GENERADO! ⛪</h2>
+    <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 30px;">Tu orden ha sido registrada en nuestro sistema.</p>
+    
+    <div style="background: rgba(225,173,1,0.1); border: 1px solid var(--accent); border-radius: var(--radius-md); padding: 20px; margin-bottom: 30px; text-align: left;">
+      <h3 style="color: var(--accent); font-family: var(--syne); font-size: 18px; margin-bottom: 10px;">⚠️ ÚLTIMO PASO OBLIGATORIO</h3>
+      <p style="color: var(--bone); font-size: 14px; line-height: 1.6; margin: 0;">Para confirmar y procesar tu pedido, debes hacer clic en el botón de abajo para <strong>enviarlo a nuestro WhatsApp</strong>.<br><br>Si tu método de pago es Pago Móvil o Zelle, por favor <strong>adjunta la captura del pago</strong> junto con el mensaje.</p>
+    </div>
+
+    <a id="whatsapp-final-btn" href="#" target="_blank" class="btn primary" style="background: #25D366; border-color: #25D366; color: #fff; font-size: 18px; padding: 20px; width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+      ENVIAR PEDIDO Y CAPTURA A WHATSAPP
+    </a>
+
+    <div style="text-align: center; color: var(--text-muted); font-size: 13px;">
+      <p style="margin: 0 0 5px 0;">¿Hubo algún error o el botón no funciona?</p>
+      <p style="margin: 0;">Por favor, comunícate manualmente al <strong>+58 422-5540246</strong> enviando tu comprobante de pago.</p>
+    </div>
+  </div>
 </main>
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="js/catalog.js"></script>
 <script src="js/checkout.js"></script>
+<script type="module" src="js/user-profile.js"></script>
 </body>
 </html>

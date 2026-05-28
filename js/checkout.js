@@ -84,6 +84,16 @@ function renderCheckoutReviews() {
   }, 4000);
 }
 
+function isExcludedFromPackaging(itemId) {
+  const excluded = [
+    'agua', 'coca-cola', 'cerveza', 'lipton', 'gatorade',
+    'gift-card-25', 'gift-card-50', 'pase-corporativo',
+    'tshirt-logo', 'cap-trucker'
+  ];
+  const lowerId = (itemId || '').toLowerCase();
+  return excluded.includes(lowerId) || lowerId.startsWith('gift-card-');
+}
+
 function renderSummary(data) {
   const container = document.getElementById('summary-items');
   const subtotalEl = document.getElementById('summary-subtotal');
@@ -92,6 +102,10 @@ function renderSummary(data) {
   const vipEl = document.getElementById('summary-vip');
   const bonusRow = document.getElementById('bonus-row');
   const bonusEl = document.getElementById('summary-bonus');
+  const shippingRow = document.getElementById('shipping-row');
+  const shippingEl = document.getElementById('summary-shipping');
+  const packagingRow = document.getElementById('packaging-row');
+  const packagingEl = document.getElementById('summary-packaging');
 
   let subtotal = 0;
   let bonusDiscount = 0;
@@ -152,6 +166,10 @@ function renderSummary(data) {
   }).join('');
 
   if (data.items.length > 3) {
+    // Clear any existing mobile-summary-toggle first to avoid duplicates
+    const oldToggle = container.parentNode.querySelector('.mobile-summary-toggle');
+    if (oldToggle) oldToggle.remove();
+
     container.classList.add('collapsed');
     const toggleBtn = document.createElement('button');
     toggleBtn.className = 'mobile-summary-toggle';
@@ -174,6 +192,8 @@ function renderSummary(data) {
   if (bonusDiscount > 0) {
     bonusRow.style.display = 'flex';
     bonusEl.innerText = `-$${bonusDiscount.toFixed(2)}`;
+  } else {
+    bonusRow.style.display = 'none';
   }
 
   if (data.isVip) {
@@ -181,7 +201,46 @@ function renderSummary(data) {
     total -= vipDiscount;
     vipRow.style.display = 'flex';
     vipEl.innerText = `-$${vipDiscount.toFixed(2)}`;
+  } else {
+    vipRow.style.display = 'none';
   }
+
+  // Calculate packaging fee: $1.50 per non-excluded product quantity
+  let packagingFee = 0;
+  data.items.forEach(item => {
+    if (!isExcludedFromPackaging(item.id)) {
+      packagingFee += 1.50 * item.qty;
+    }
+  });
+
+  // Calculate shipping fee: $3.00 if orderType is delivery and subtotal < 60
+  const orderTypeInput = document.querySelector('input[name="orderType"]:checked');
+  const orderType = orderTypeInput ? orderTypeInput.value : 'local';
+  
+  const isFreeShipping = subtotal >= 60;
+  const shippingFee = (orderType === 'delivery') ? (isFreeShipping ? 0.00 : 3.00) : 0.00;
+
+  // Render rows
+  if (orderType === 'delivery') {
+    if (shippingRow && shippingEl) {
+      shippingRow.style.display = 'flex';
+      shippingEl.innerText = isFreeShipping ? 'Gratis' : `$${shippingFee.toFixed(2)}`;
+    }
+  } else {
+    if (shippingRow) shippingRow.style.display = 'none';
+  }
+
+  if (packagingFee > 0) {
+    if (packagingRow && packagingEl) {
+      packagingRow.style.display = 'flex';
+      packagingEl.innerText = `$${packagingFee.toFixed(2)}`;
+    }
+  } else {
+    if (packagingRow) packagingRow.style.display = 'none';
+  }
+
+  // Add fees to the total
+  total += shippingFee + packagingFee;
 
   subtotalEl.innerText = `$${subtotal.toFixed(2)}`;
   totalEl.innerText = `$${total.toFixed(2)}`;
@@ -199,6 +258,11 @@ function initOrderTypeToggle() {
       } else {
         addressField.style.display = 'none';
         document.getElementById('address1').required = false;
+      }
+      // Re-render summary to update shipping fee dynamically
+      const checkoutData = JSON.parse(localStorage.getItem('santopadre_checkout'));
+      if (checkoutData) {
+        renderSummary(checkoutData);
       }
     });
   });
@@ -282,10 +346,23 @@ function initFormHandler(checkoutData) {
       isVip: checkoutData.isVip
     };
 
+    const totalAmountStr = document.getElementById('summary-total').innerText.replace('$', '');
+    const totalAmount = parseFloat(totalAmountStr);
+    orderDetails.total = totalAmount;
+
+    const executeOrderCompletion = async () => {
+      if (window.saveOrderToFirebase) {
+        try {
+          await window.saveOrderToFirebase(orderDetails);
+        } catch (err) {
+          console.error("Error guardando orden en Firebase:", err);
+        }
+      }
+      await syncToSheets(orderDetails);
+      sendToWhatsApp(orderDetails);
+    };
+
     if (orderDetails.payment === 'phantom') {
-      const totalAmountStr = document.getElementById('summary-total').innerText.replace('$', '');
-      const totalAmount = parseFloat(totalAmountStr);
-      
       const submitBtn = document.querySelector('.checkout-submit span');
       const originalText = submitBtn.innerText;
       submitBtn.innerText = "Conectando con Phantom...";
@@ -293,8 +370,7 @@ function initFormHandler(checkoutData) {
       try {
         const txHash = await processPhantomPayment(totalAmount);
         orderDetails.txHash = txHash;
-        await syncToSheets(orderDetails);
-        sendToWhatsApp(orderDetails);
+        await executeOrderCompletion();
       } catch (error) {
         console.error(error);
         alert(error.message);
@@ -302,8 +378,7 @@ function initFormHandler(checkoutData) {
         submitBtn.innerText = originalText;
       }
     } else {
-      await syncToSheets(orderDetails);
-      sendToWhatsApp(orderDetails);
+      await executeOrderCompletion();
     }
   });
 }
@@ -315,11 +390,19 @@ async function syncToSheets(order) {
     return;
   }
 
-  const itemsDetail = order.items.map(i => `${i.qty}x ${i.name}`).join(', ');
+  let itemsDetail = order.items.map(i => `${i.qty}x ${i.name}`).join(', ');
+  if (order.orderType === 'delivery') {
+    itemsDetail += ` | Delivery: ${order.address1} ${order.address2 ? order.address2 : ''} (Ref: ${order.reference ? order.reference : 'N/A'})`;
+  } else if (order.orderType === 'pickup') {
+    itemsDetail += ` | Pick Up`;
+  } else {
+    itemsDetail += ` | Local`;
+  }
+
   const total = document.getElementById('summary-total').innerText;
 
   const data = {
-    type: "Pedido Web",
+    type: `Pedido Web - ${order.orderType.toUpperCase()}`,
     name: order.name,
     email: order.email,
     phone: order.phone,
@@ -415,16 +498,58 @@ function sendToWhatsApp(order) {
   }
   if (bonusDiscount > 0) message += `\n🎁 *Bonus:* -$${bonusDiscount.toFixed(2)} aplicado`;
 
+  // Calculate packaging fee: $1.50 per non-excluded product quantity
+  let packagingFee = 0;
+  order.items.forEach(item => {
+    if (!isExcludedFromPackaging(item.id)) {
+      packagingFee += 1.50 * item.qty;
+    }
+  });
+
+  // Calculate shipping fee: $3.00 if orderType is delivery and subtotal < 60
+  const isFreeShipping = subtotal >= 60;
+  const shippingFee = (order.orderType === 'delivery') ? (isFreeShipping ? 0.00 : 3.00) : 0.00;
+
   message += `\n\n💰 *Subtotal:* $${subtotal.toFixed(2)}`;
+  
+  if (packagingFee > 0) {
+    message += `\n📦 *Envases:* $${packagingFee.toFixed(2)}`;
+  }
+  
+  if (order.orderType === 'delivery') {
+    message += `\n🚚 *Envío:* ${isFreeShipping ? 'GRATIS (Promo)' : `$${shippingFee.toFixed(2)}`}`;
+  }
+
+  total += shippingFee + packagingFee;
   message += `\n💵 *TOTAL BCV:* $${total.toFixed(2)}\n\n`;
+  message += `⚠️ _Adjunto mi captura de pago._\n`;
   message += `¡Bendiciones! 🙏`;
 
   // Use the phone number from catalog if available
   const whatsappNum = ((typeof CATALOG !== 'undefined' && CATALOG.info) ? CATALOG.info.whatsapp : "584225540246").replace(/\D/g, '');
-  window.open(`https://wa.me/${whatsappNum}?text=${encodeURIComponent(message)}`, '_blank');
+  const waUrl = `https://wa.me/${whatsappNum}?text=${encodeURIComponent(message)}`;
+  
+  // En lugar de abrir la ventana directamente (lo cual bloquean los navegadores si es asíncrono),
+  // mostramos el modal de éxito para que el usuario haga clic.
+  const whatsappBtn = document.getElementById('whatsapp-final-btn');
+  if (whatsappBtn) {
+    whatsappBtn.href = waUrl;
+  }
+  
+  // Ocultar formulario y mostrar éxito
+  const checkoutWrapper = document.querySelector('.checkout-wrapper');
+  const successModal = document.getElementById('checkout-success');
+  if (checkoutWrapper && successModal) {
+    checkoutWrapper.style.display = 'none';
+    successModal.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    // Fallback if modal not found
+    window.open(waUrl, '_blank');
+  }
   
   // Optional: Clear cart after successful order
-  // localStorage.removeItem('santopadre_checkout');
+  localStorage.removeItem('santopadre_checkout');
 }
 
 function initCartExtras(checkoutData) {
