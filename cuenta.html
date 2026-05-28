@@ -1346,10 +1346,11 @@
       
       <div style="margin-bottom: 25px;">
         <label style="display: block; color: var(--mute); font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;">Método de Pago</label>
-        <select id="add-funds-method" style="width: 100%; background: var(--ink-2); border: 1px solid var(--line); color: var(--white); border-radius: 8px; padding: 14px; font-size: 14px; font-family: var(--archivo); outline: none; appearance: none; cursor: pointer;">
+        <select id="add-funds-method" onchange="document.querySelectorAll('.payment-info-box').forEach(el => el.style.display='none'); document.getElementById('info-' + this.value).style.display='block';" style="width: 100%; background: var(--ink-2); border: 1px solid var(--line); color: var(--white); border-radius: 8px; padding: 14px; font-size: 14px; font-family: var(--archivo); outline: none; appearance: none; cursor: pointer;">
           <option value="efectivo">Efectivo</option>
           <option value="pago-movil">Pago Móvil</option>
           <option value="zelle">Zelle</option>
+          <option value="phantom">Phantom (Web3)</option>
         </select>
         <!-- Custom arrow -->
         <div style="position: absolute; right: 45px; bottom: 130px; pointer-events: none;">
@@ -1357,9 +1358,39 @@
         </div>
       </div>
       
-      <button onclick="window.location.href='checkout.html';" style="background: var(--lime); color: var(--ink-3); border: none; padding: 15px; font-weight: 900; font-family: var(--syne); font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 8px; cursor: pointer; width: 100%; transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-        Pagar Ahora
+      <button onclick="
+        const amount = document.getElementById('add-funds-amount').value || '0';
+        const method = document.getElementById('add-funds-method').options[document.getElementById('add-funds-method').selectedIndex].text;
+        const msg = `Hola, quiero recargar $${amount} a mi Cartera SantoPadre. Mi método de pago es ${method}. Adjunto mi comprobante de pago.`;
+        window.open(`https://wa.me/584125540246?text=${encodeURIComponent(msg)}`, '_blank');
+        const m = document.getElementById('add-funds-modal');
+        m.style.opacity='0';
+        setTimeout(() => m.style.display='none', 400);
+      " style="background: var(--lime); color: var(--ink-3); border: none; padding: 15px; font-weight: 900; font-family: var(--syne); font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 8px; cursor: pointer; width: 100%; transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        Enviar Comprobante 💬
       </button>
+
+      <!-- Detalles de Pago -->
+      <div style="margin-top: 20px; background: #18181b; padding: 15px; border-radius: 8px; border: 1px dashed var(--line);">
+        <div id="info-efectivo" class="payment-info-box" style="display: block;">
+          <p style="color: var(--bone); font-size: 13px; margin: 0; line-height: 1.5;">Puedes pagar en efectivo directamente en nuestra tienda física. Escríbenos para confirmar tu visita.</p>
+        </div>
+        <div id="info-pago-movil" class="payment-info-box" style="display: none;">
+          <p style="font-size: 11px; margin-bottom: 6px; color: var(--mute); text-transform: uppercase; letter-spacing: 0.05em;">Datos de Pago Móvil:</p>
+          <p style="font-size: 13px; font-weight: 700; margin-bottom: 4px; color: #ffffff;">Banco: BNC - 0191</p>
+          <p style="font-size: 13px; font-weight: 700; margin-bottom: 4px; color: #ffffff;">CI: 21564286</p>
+          <p style="font-size: 13px; font-weight: 700; color: #ffffff; margin: 0;">Tlf: 04125540246</p>
+        </div>
+        <div id="info-zelle" class="payment-info-box" style="display: none;">
+          <p style="font-size: 11px; margin-bottom: 6px; color: var(--mute); text-transform: uppercase; letter-spacing: 0.05em;">Enviar a:</p>
+          <p style="font-size: 14px; font-weight: 700; margin-bottom: 0; color: #ffffff;">luisgonzalez372f@gmail.com</p>
+        </div>
+        <div id="info-phantom" class="payment-info-box" style="display: none;">
+          <p style="font-size: 11px; margin-bottom: 6px; color: var(--mute); text-transform: uppercase; letter-spacing: 0.05em;">Wallet Phantom (SOL / USDC):</p>
+          <p style="font-size: 11px; font-weight: 700; margin-bottom: 4px; color: #AB9FF2; word-break: break-all;">G9Xn2bQv7Nf...</p>
+          <p style="font-size: 12px; color: var(--bone); margin: 0;">Envía el monto equivalente a la wallet proporcionada y envíanos la captura o hash de transacción.</p>
+        </div>
+      </div>
       
     </div>
   </div>
