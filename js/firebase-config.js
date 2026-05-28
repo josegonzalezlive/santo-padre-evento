@@ -1,13 +1,13 @@
 // firebase-config.js — SantoPadre® Firebase Initializer (REAL MODE)
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCqk5WKecJxhqoT-74kkuZE_dwh0oQWOFU",
+  apiKey: "AIzaSyCqk5WKecJxhqoT-74kkuZE_dwhOoQWOFU",
   authDomain: "sound-bee-495502-i0.firebaseapp.com",
   projectId: "sound-bee-495502-i0",
   storageBucket: "sound-bee-495502-i0.firebasestorage.app",
   messagingSenderId: "170027889930",
   appId: "1:170027889930:web:1d7a38939ba50e8788f6f3",
-  measurementId: "G-70XH5V5160"
+  measurementId: "G-7EX4SH5160"
 };
 
 // Intentar leer credenciales guardadas en LocalStorage (para configuración dinámica desde el Admin sin tocar código)
