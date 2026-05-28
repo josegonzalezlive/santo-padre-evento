@@ -7,7 +7,7 @@
   <link rel="icon" type="image/webp" href="assets/logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@50..125,300..900&family=Syne:wght@400..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@50..125,300..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
   <style>
     :root {
@@ -27,7 +27,6 @@
       --yellow: #fbbc05;
       --gold: #dfb86c;     /* Gold Accent for VIPs and numbers */
       --lime: #7cfc9a;     /* Bright Lime Green for Scan/Success */
-      --syne: 'Syne', sans-serif;
       --archivo: 'Archivo', sans-serif;
       --space: 'Space Grotesk', monospace;
     }
@@ -59,7 +58,7 @@
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
     }
     .auth-gate h2 {
-      font-family: var(--syne);
+      font-family: var(--space);
       font-size: 24px;
       font-weight: 800;
       text-transform: uppercase;
@@ -105,7 +104,7 @@
       color: var(--white);
       border: none;
       padding: 12px 28px;
-      font-family: var(--syne);
+      font-family: var(--space);
       font-weight: 800;
       font-size: 13px;
       text-transform: uppercase;
@@ -161,7 +160,7 @@
       background: none;
       border: 1px solid transparent;
       color: var(--mute);
-      font-family: var(--syne);
+      font-family: var(--space);
       font-size: 13px;
       font-weight: 700;
       padding: 12px 18px;
@@ -213,7 +212,7 @@
       padding-bottom: 24px;
     }
     .main-header h1 {
-      font-family: var(--syne);
+      font-family: var(--space);
       font-size: 26px;
       font-weight: 800;
       text-transform: uppercase;
@@ -261,7 +260,7 @@
       z-index: 100;
     }
     .admin-header h1 {
-      font-family: var(--syne);
+      font-family: var(--space);
       font-size: 18px;
       font-weight: 800;
       text-transform: uppercase;
@@ -319,7 +318,7 @@
       letter-spacing: 0.12em;
     }
     .kpi-value {
-      font-family: var(--syne);
+      font-family: var(--space);
       font-size: 32px;
       font-weight: 800;
       color: var(--bone);
@@ -355,7 +354,7 @@
       letter-spacing: 0.1em;
       border-bottom: 1px solid var(--line);
       white-space: nowrap;
-      font-family: var(--syne);
+      font-family: var(--space);
     }
     td {
       padding: 16px 20px;
@@ -375,7 +374,7 @@
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      font-family: var(--syne);
+      font-family: var(--space);
     }
     .badge-lime { background: rgba(72,109,84,0.15); color: #7cfc9a; border: 1px solid rgba(72,109,84,0.3); }
     .badge-orange { background: rgba(229,93,39,0.15); color: var(--accent); border: 1px solid rgba(229,93,39,0.3); }
@@ -413,7 +412,7 @@
       color: var(--bone);
       padding: 12px 20px;
       border-radius: 10px;
-      font-family: var(--syne);
+      font-family: var(--space);
       font-size: 12px;
       font-weight: 800;
       letter-spacing: 0.05em;
@@ -682,7 +681,7 @@
           
           <!-- Column 1: Búsqueda y Acciones de Clientes -->
           <div style="display: flex; flex-direction: column; gap: 12px;">
-            <span style="font-size: 11px; font-weight: 800; color: var(--mute); text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--syne);">Búsqueda y Filtros</span>
+            <span style="font-size: 11px; font-weight: 800; color: var(--mute); text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--space);">Búsqueda y Filtros</span>
             <input type="text" class="search-input" id="search-users" placeholder="👥 Buscar por nombre o email..." oninput="filterTable('users-table', this.value)" style="flex: none; max-width: none; width: 100%;">
             <div style="display: flex; gap: 10px; margin-top: 5px;">
               <button class="export-btn" onclick="window.openCreateUserModal()" style="background: var(--accent); color: var(--white); border: none; font-weight: bold; flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;">➕ Registrar Cliente</button>
@@ -692,7 +691,7 @@
           
           <!-- Column 2: Verificación de Código de Barras / Acreditación Rápida -->
           <div class="client-controls-col2">
-            <span style="font-size: 11px; font-weight: 800; color: var(--lime); text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--syne);">Verificar Código de Barras / Serial (Tarjeta)</span>
+            <span style="font-size: 11px; font-weight: 800; color: var(--lime); text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--space);">Verificar Código de Barras / Serial (Tarjeta)</span>
             <div style="display: flex; gap: 8px;">
               <input type="text" class="search-input" id="barcode-scan-input" placeholder="Escanear tarjeta o escribir serial (SP-XXXX)..." onkeydown="window.handleBarcodeKeydown(event)" style="border-color: var(--lime); flex: 1; max-width: none;">
               <button class="export-btn" onclick="window.startCameraScanner()" style="background: var(--lime); color: var(--ink); border: none; font-weight: bold; white-space: nowrap; display: flex; align-items: center; gap: 6px; padding: 0 16px;">📷 Cámara</button>
@@ -806,7 +805,7 @@
       <!-- TAB: AJUSTES -->
       <div class="admin-pane" id="pane-ajustes">
         <div style="max-width: 600px; padding: 24px; background: var(--ink-2); border: 1px solid var(--line); border-radius: 14px; display: flex; flex-direction: column; gap: 20px;">
-          <h3 style="font-family: var(--syne); color: var(--lime); font-size: 18px; text-transform: uppercase;">Integración de Marketing (Webhooks)</h3>
+          <h3 style="font-family: var(--space); color: var(--lime); font-size: 18px; text-transform: uppercase;">Integración de Marketing (Webhooks)</h3>
           <p style="font-size: 13px; color: var(--mute); line-height: 1.5;">Configura un Webhook de n8n o Zapier para sincronizar automáticamente el registro de clientes y sus fichas gastronómicas con Google Sheets.</p>
           
           <div style="display: flex; flex-direction: column; gap: 6px;">
@@ -819,7 +818,7 @@
 
           <hr style="border: 0; border-top: 1px solid var(--line); margin: 10px 0;">
 
-          <h3 style="font-family: var(--syne); color: var(--lime); font-size: 18px; text-transform: uppercase; margin-top: 5px;">Conexión de Firebase (Producción)</h3>
+          <h3 style="font-family: var(--space); color: var(--lime); font-size: 18px; text-transform: uppercase; margin-top: 5px;">Conexión de Firebase (Producción)</h3>
           <p style="font-size: 13px; color: var(--mute); line-height: 1.5;">Configura las credenciales de tu consola de Firebase para conectar la base de datos real sin necesidad de tocar código. Si están vacías o son incorrectas, el sistema volverá automáticamente al modo de simulación.</p>
           
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
@@ -893,7 +892,7 @@
     <div class="modal-content" style="max-width: 450px;">
       <button class="modal-close" onclick="window.stopCameraScanner()">&times;</button>
       <div id="modal-scanner-body" style="text-align: center; padding: 10px;">
-        <h3 style="font-family: var(--syne); color: var(--white); margin-bottom: 20px; font-size: 18px;">📷 Escanear Tarjeta</h3>
+        <h3 style="font-family: var(--space); color: var(--white); margin-bottom: 20px; font-size: 18px;">📷 Escanear Tarjeta</h3>
         <div id="reader" style="width: 100%; max-width: 400px; margin: 0 auto; background: var(--ink-3); border-radius: 8px; overflow: hidden; border: 1px solid var(--line);"></div>
         <p style="color: var(--mute); font-size: 12px; margin-top: 15px;">Apunta con la cámara al código de barra o QR de la tarjeta de sellos del cliente.</p>
         <button class="export-btn" onclick="window.stopCameraScanner()" style="width: 100%; margin-top: 15px; background: transparent; border: 1px solid var(--mute); color: var(--mute);">Cancelar</button>
@@ -1581,14 +1580,14 @@
 
       if (pendingVerificationsHtml) {
         pendingVerificationsHtml = `
-          <h4 style="font-family: var(--syne); color: var(--accent); margin-top: 24px; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">⏳ Verificaciones Pendientes</h4>
+          <h4 style="font-family: var(--space); color: var(--accent); margin-top: 24px; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">⏳ Verificaciones Pendientes</h4>
           ${pendingVerificationsHtml}
         `;
       }
 
       const modal = document.getElementById("modal-body");
       modal.innerHTML = `
-        <h3 style="font-family: var(--syne); color: var(--white); margin-bottom: 20px; font-size: 18px;">📋 Ficha de Cliente</h3>
+        <h3 style="font-family: var(--space); color: var(--white); margin-bottom: 20px; font-size: 18px;">📋 Ficha de Cliente</h3>
         <div class="detail-row"><span class="detail-label">Nombre</span><span class="detail-value">${u.name || "—"}</span></div>
         <div class="detail-row"><span class="detail-label">Email</span><span class="detail-value">${u.email || "—"}</span></div>
         <div class="detail-row"><span class="detail-label">Teléfono</span><span class="detail-value">${u.phone || "—"}</span></div>
@@ -1600,7 +1599,7 @@
         <div class="detail-row"><span class="detail-label">Referido por</span><span class="detail-value">${u.referredBy || "Directo"}</span></div>
         <div class="detail-row"><span class="detail-label">Registro</span><span class="detail-value">${u.createdAt ? new Date(u.createdAt).toLocaleString("es-ES") : "—"}</span></div>
         
-        <h4 style="font-family: var(--syne); color: var(--lime); margin-top: 24px; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">🌮 Perfil Gastronómico</h4>
+        <h4 style="font-family: var(--space); color: var(--lime); margin-top: 24px; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">🌮 Perfil Gastronómico</h4>
         <div class="detail-row"><span class="detail-label">Picante</span><span class="detail-value">${SPICY[g.spicyTolerance] || "Sin definir"}</span></div>
         <div class="detail-row"><span class="detail-label">Aguacate</span><span class="detail-value">${g.avocado || "Sin definir"}</span></div>
         <div class="detail-row"><span class="detail-label">Cilantro</span><span class="detail-value">${g.cilantro || "Sin definir"}</span></div>
@@ -1609,17 +1608,17 @@
         <div class="detail-row"><span class="detail-label">Extras</span><span class="detail-value">${(g.additions || []).join(", ") || "—"}</span></div>
         <div class="detail-row"><span class="detail-label">Antojos</span><span class="detail-value" style="max-width: 250px; word-break: break-word;">${g.cravings || "—"}</span></div>
         
-        <h4 style="font-family: var(--syne); color: var(--accent); margin-top: 24px; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">🎁 Premios Activos</h4>
+        <h4 style="font-family: var(--space); color: var(--accent); margin-top: 24px; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">🎁 Premios Activos</h4>
         ${rewards}
 
         ${pendingVerificationsHtml}
 
-        <h4 style="font-family: var(--syne); color: var(--lime); margin-top: 24px; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">⚡ Acciones Rápidas</h4>
+        <h4 style="font-family: var(--space); color: var(--lime); margin-top: 24px; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">⚡ Acciones Rápidas</h4>
         <div style="background: rgba(220,254,84,0.03); border: 1px solid rgba(220,254,84,0.1); border-radius: 8px; padding: 12px; margin-top: 10px; margin-bottom: 15px;">
           <button class="admin-btn" onclick="window.quickAddStamp('${u.id}')" style="background: var(--lime); color: var(--ink); border: none; font-weight: 800; height: 40px; width: 100%; border-radius: 6px; cursor: pointer; font-size: 12px; transition: transform 0.2s;">⚡ Sumar 1 Sello (+100 PTS)</button>
         </div>
 
-        <h4 style="font-family: var(--syne); color: var(--lime); margin-top: 24px; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">✍️ Modificar Puntos / Sellos</h4>
+        <h4 style="font-family: var(--space); color: var(--lime); margin-top: 24px; margin-bottom: 12px; font-size: 14px; text-transform: uppercase;">✍️ Modificar Puntos / Sellos</h4>
         <div style="background: var(--ink-3); border: 1px solid var(--line); border-radius: 8px; padding: 15px; display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
             <div style="display: flex; flex-direction: column; gap: 6px;">
@@ -2064,7 +2063,7 @@
     window.openCreateUserModal = function() {
       const modal = document.getElementById("modal-body");
       modal.innerHTML = `
-        <h3 style="font-family: var(--syne); color: var(--white); margin-bottom: 20px; font-size: 18px;">➕ Registrar Nuevo Cliente</h3>
+        <h3 style="font-family: var(--space); color: var(--white); margin-bottom: 20px; font-size: 18px;">➕ Registrar Nuevo Cliente</h3>
         <div style="display: flex; flex-direction: column; gap: 15px;">
           <div style="display: flex; flex-direction: column; gap: 6px;">
             <span style="font-size: 10px; font-weight: bold; color: var(--mute); text-transform: uppercase;">Nombre Completo</span>

@@ -7,7 +7,7 @@
   <link rel="icon" type="image/webp" href="assets/logo.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@50..125,300..900&family=Syne:wght@400..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@50..125,300..900&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/cuenta.css">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
@@ -69,7 +69,7 @@
     <!-- COLUMNA DERECHA: FORMULARIO -->
     <div class="login-form-column">
       <div class="welcome-box" style="max-width: 450px; width: 100%; background: transparent; border: none; box-shadow: none; padding: 0; margin-top: 0;">
-        <h3 style="font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; color: var(--white); line-height: 1.2; letter-spacing: 0.03em;">Portal de Recompensas</h3>
+        <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; color: var(--white); line-height: 1.2; letter-spacing: 0.03em;">Portal de Recompensas</h3>
         <p style="margin-bottom: 25px; color: var(--mute); font-size: 14px; line-height: 1.6; font-family: 'Space Grotesk', sans-serif;">Inicia sesión o regístrate para acumular $PADRE en cada visita, desbloquear premios sagrados y llevar tu devoción por el sabor de SantoPadre® al siguiente nivel.</p>
         
         <!-- GOOGLE LOGIN BUTTON -->
@@ -98,7 +98,7 @@
             <span class="form-label" style="font-size: 10px; font-weight: bold; color: var(--mute);">Contraseña</span>
             <input type="password" id="auth-password" class="profile-input" placeholder="••••••••" style="width: 100%; height: 44px; font-size: 13.5px; background: var(--ink-3); border-color: var(--line); border-radius: 8px;">
           </div>
-          <button class="admin-btn" id="email-submit-btn" style="width: 100%; margin-top: 5px; height: 46px; background: var(--accent); color: var(--white); font-family: var(--syne); font-weight: 800; text-transform: uppercase; border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s;">
+          <button class="admin-btn" id="email-submit-btn" style="width: 100%; margin-top: 5px; height: 46px; background: var(--accent); color: var(--white); font-family: var(--space); font-weight: 800; text-transform: uppercase; border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s;">
             Iniciar Sesión
           </button>
           <div style="text-align: center; margin-top: 10px;">
@@ -127,7 +127,7 @@
 
       <div class="profile-summary">
         <img id="user-display-avatar" src="" alt="Foto de perfil" style="display: none; width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--lime); object-fit: cover; box-shadow: 0 0 15px rgba(220,254,84,0.25);">
-        <div id="user-avatar-placeholder" class="avatar-placeholder-initial" style="display: none; width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--lime); background: var(--ink-3); color: var(--lime); font-family: var(--syne); font-size: 20px; font-weight: 800; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(220,254,84,0.25);">
+        <div id="user-avatar-placeholder" class="avatar-placeholder-initial" style="display: none; width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--lime); background: var(--ink-3); color: var(--lime); font-family: var(--space); font-size: 20px; font-weight: 800; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(220,254,84,0.25);">
           <!-- Inicial dynamically rendered -->
         </div>
         <div class="profile-info">
@@ -328,7 +328,7 @@
                   </div>
 
                   <br>
-                  <button onclick="connectSimulatedWallet()" style="background: rgba(220, 254, 84, 0.15); border: 1px solid var(--lime); color: var(--lime); padding: 12px 28px; font-size: 13px; font-family: var(--syne); font-weight: bold; border-radius: 10px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='rgba(220, 254, 84, 0.25)'" onmouseout="this.style.background='rgba(220, 254, 84, 0.15)'">
+                  <button onclick="connectSimulatedWallet()" style="background: rgba(220, 254, 84, 0.15); border: 1px solid var(--lime); color: var(--lime); padding: 12px 28px; font-size: 13px; font-family: var(--space); font-weight: bold; border-radius: 10px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='rgba(220, 254, 84, 0.25)'" onmouseout="this.style.background='rgba(220, 254, 84, 0.15)'">
                     Activar Cuenta Digital ⚡
                   </button>
                 </div>
@@ -421,7 +421,7 @@
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
               <div style="text-align: left;">
                 <span style="font-size: 9px; text-transform: uppercase; color: var(--mute); font-weight: bold; letter-spacing: 0.1em; display: block; margin-bottom: 2px;">Progreso de Niveles</span>
-                <h4 style="color: var(--white); font-size: 15px; font-weight: bold; margin: 0; font-family: var(--syne);" id="progress-level-text">Nivel 0: Sin sellos acumulados</h4>
+                <h4 style="color: var(--white); font-size: 15px; font-weight: bold; margin: 0; font-family: var(--space);" id="progress-level-text">Nivel 0: Sin sellos acumulados</h4>
               </div>
               <div style="text-align: right;">
                 <span style="font-size: 9px; text-transform: uppercase; color: var(--mute); font-weight: bold; letter-spacing: 0.1em; display: block; margin-bottom: 2px;">Próximo Premio</span>
@@ -1076,7 +1076,7 @@
             
             <div class="avatar-container" style="position: relative;">
               <!-- Stylized avatar with neon border -->
-              <div id="profile-avatar-badge" style="width: 80px; height: 80px; border-radius: 50%; background: var(--ink-3); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; font-family: var(--syne); color: var(--lime); text-transform: uppercase; box-shadow: 0 0 15px rgba(220, 254, 84, 0.2);">
+              <div id="profile-avatar-badge" style="width: 80px; height: 80px; border-radius: 50%; background: var(--ink-3); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 800; font-family: var(--space); color: var(--lime); text-transform: uppercase; box-shadow: 0 0 15px rgba(220, 254, 84, 0.2);">
                 U
               </div>
               <div style="position: absolute; bottom: 0; right: 0; background: var(--lime); color: var(--ink); border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; border: 2px solid var(--ink-2);" title="Usuario Verificado">
@@ -1085,7 +1085,7 @@
             </div>
             
             <div>
-              <h4 id="summary-card-name" style="font-family: var(--syne); font-size: 16px; color: var(--white); font-weight: 700; margin-bottom: 4px; word-break: break-word;">Cliente</h4>
+              <h4 id="summary-card-name" style="font-family: var(--space); font-size: 16px; color: var(--white); font-weight: 700; margin-bottom: 4px; word-break: break-word;">Cliente</h4>
               <p id="summary-card-email" style="font-size: 12px; color: var(--mute); word-break: break-all;">email@ejemplo.com</p>
             </div>
             
@@ -1097,7 +1097,7 @@
           
           <!-- Resumen de Gustos Gastronómicos (Visual) -->
           <div class="gastronomy-summary-card" style="background: var(--ink-2); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
-            <h5 style="font-family: var(--syne); font-size: 11px; color: var(--white); font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--line); padding-bottom: 8px; margin: 0;">Ficha Gastronómica</h5>
+            <h5 style="font-family: var(--space); font-size: 11px; color: var(--white); font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--line); padding-bottom: 8px; margin: 0;">Ficha Gastronómica</h5>
             
             <div style="display: flex; flex-direction: column; gap: 10px; font-size: 12px;">
               <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed var(--line); padding-bottom: 6px;">
@@ -1130,7 +1130,7 @@
           <form id="profile-details-form" style="width: 100%; display: flex; flex-direction: column; gap: 24px;">
           <!-- DATOS PERSONALES -->
           <div class="welcome-box" style="text-align: left; align-items: flex-start; gap: 15px; width: 100%;">
-            <h4 style="color: var(--white); font-weight: 700; font-family: var(--syne); font-size: 16px; border-bottom: 1px solid var(--line); width: 100%; padding-bottom: 6px;">Datos Personales</h4>
+            <h4 style="color: var(--white); font-weight: 700; font-family: var(--space); font-size: 16px; border-bottom: 1px solid var(--line); width: 100%; padding-bottom: 6px;">Datos Personales</h4>
             <div class="form-row" style="width: 100%;">
               <div class="form-group">
                 <span class="form-label">Nombre</span>
@@ -1184,7 +1184,7 @@
           <!-- PERFIL GASTRONÓMICO MEXICANO -->
           <div class="welcome-box" style="text-align: left; align-items: flex-start; gap: 20px; width: 100%;">
             <div style="width: 100%;">
-              <h4 style="color: var(--white); font-weight: 700; font-family: var(--syne); font-size: 16px; border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-bottom: 4px;">🌮 Ficha de Perfil Gastronómico: Especialidad Mexicana</h4>
+              <h4 style="color: var(--white); font-weight: 700; font-family: var(--space); font-size: 16px; border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-bottom: 4px;">🌮 Ficha de Perfil Gastronómico: Especialidad Mexicana</h4>
               <p style="font-size: 12px; color: var(--mute);">Personaliza tu perfil de taquería para que adaptemos tus pedidos automáticamente.</p>
             </div>
 
@@ -1383,7 +1383,7 @@
       <img src="assets/reward_chest.png" alt="Cofre de Recompensa" style="width: 140px; height: auto; margin: 0 auto 18px; display: block; filter: drop-shadow(0 0 20px rgba(220,254,84,0.55)); animation: float 3s ease-in-out infinite;">
 
       <!-- Title (dynamic) -->
-      <h2 id="reward-popup-title" style="font-family: var(--syne); color: var(--lime); font-size: 22px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.04em;">¡Felicidades!</h2>
+      <h2 id="reward-popup-title" style="font-family: var(--space); color: var(--lime); font-size: 22px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.04em;">¡Felicidades!</h2>
 
       <!-- Message (dynamic) -->
       <p id="reward-popup-message" style="color: var(--bone); font-family: var(--archivo); font-size: 14px; margin-bottom: 20px; line-height: 1.6;"></p>
@@ -1395,7 +1395,7 @@
       </div>
 
       <!-- CTA button -->
-      <button onclick="const m=document.getElementById('reward-popup-modal');m.style.opacity='0';setTimeout(()=>m.style.display='none',400);" style="background: var(--lime); color: var(--ink); border: none; padding: 13px 30px; font-weight: 900; font-family: var(--syne); font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 10px; cursor: pointer; width: 100%; transition: transform 0.15s; margin-bottom: 15px;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">¡Entendido! 🤘</button>
+      <button onclick="const m=document.getElementById('reward-popup-modal');m.style.opacity='0';setTimeout(()=>m.style.display='none',400);" style="background: var(--lime); color: var(--ink); border: none; padding: 13px 30px; font-weight: 900; font-family: var(--space); font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 10px; cursor: pointer; width: 100%; transition: transform 0.15s; margin-bottom: 15px;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">¡Entendido! 🤘</button>
       
       <!-- Ver más tarde link -->
       <div style="text-align: center;">
@@ -1411,7 +1411,7 @@
       <!-- Close button -->
       <button onclick="const m=document.getElementById('add-funds-modal');m.style.opacity='0';setTimeout(()=>m.style.display='none',400);" style="position: absolute; top: 18px; right: 20px; background: none; border: none; color: var(--mute); font-size: 26px; cursor: pointer; line-height: 1;">&times;</button>
       
-      <h2 style="font-family: var(--syne); color: var(--white); font-size: 22px; margin-bottom: 20px;">Recargar Cartera</h2>
+      <h2 style="font-family: var(--space); color: var(--white); font-size: 22px; margin-bottom: 20px;">Recargar Cartera</h2>
       
       <!-- Monto Input -->
       <div style="margin-bottom: 20px;">
@@ -1539,12 +1539,12 @@
       
       <!-- Action Buttons -->
       <!-- WhatsApp Submit (visible for Cash, Pago Movil, Zelle) -->
-      <button id="modal-submit-whatsapp" onclick="submitDepositWhatsApp()" style="background: var(--lime); color: var(--ink-3); border: none; padding: 15px; font-size: 14px; font-weight: 800; font-family: var(--syne); text-transform: uppercase; letter-spacing: 0.05em; border-radius: 8px; cursor: pointer; width: 100%; transition: transform 0.15s; display: block;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+      <button id="modal-submit-whatsapp" onclick="submitDepositWhatsApp()" style="background: var(--lime); color: var(--ink-3); border: none; padding: 15px; font-size: 14px; font-weight: 800; font-family: var(--space); text-transform: uppercase; letter-spacing: 0.05em; border-radius: 8px; cursor: pointer; width: 100%; transition: transform 0.15s; display: block;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         Enviar Comprobante 💬
       </button>
 
       <!-- Phantom Web3 Submit (visible only for Phantom) -->
-      <button id="modal-submit-phantom" onclick="payWithPhantomModalDirect()" style="background: #AB9FF2; color: #1c1340; border: none; padding: 15px; font-size: 14px; font-weight: 800; font-family: var(--syne); text-transform: uppercase; letter-spacing: 0.05em; border-radius: 8px; cursor: pointer; width: 100%; transition: transform 0.15s; display: none;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+      <button id="modal-submit-phantom" onclick="payWithPhantomModalDirect()" style="background: #AB9FF2; color: #1c1340; border: none; padding: 15px; font-size: 14px; font-weight: 800; font-family: var(--space); text-transform: uppercase; letter-spacing: 0.05em; border-radius: 8px; cursor: pointer; width: 100%; transition: transform 0.15s; display: none;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         Pagar con Phantom Wallet ⚡
       </button>
 
@@ -1556,7 +1556,7 @@
       <!-- Close button -->
       <button onclick="const m=document.getElementById('solana-qr-modal');m.style.opacity='0';setTimeout(()=>m.style.display='none',400);" style="position: absolute; top: 14px; right: 18px; background: none; border: none; color: var(--mute); font-size: 26px; cursor: pointer; line-height: 1;">&times;</button>
       
-      <h3 style="font-family: var(--syne); color: var(--white); font-size: 18px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.05em;">Código QR de Canje</h3>
+      <h3 style="font-family: var(--space); color: var(--white); font-size: 18px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.05em;">Código QR de Canje</h3>
       <p style="color: var(--mute); font-size: 11px; margin-bottom: 20px;">Muestra este código al cajero para pagar con tu saldo o acumular tus $PADRE</p>
       
       <!-- QR Image Container -->
@@ -1569,7 +1569,7 @@
         <strong style="font-size: 12px; color: var(--white); font-family: var(--space);">EqqnYoF6qJqaP9...DLRG</strong>
       </div>
       
-      <button onclick="const m=document.getElementById('solana-qr-modal');m.style.opacity='0';setTimeout(()=>m.style.display='none',400);" style="background: var(--lime); color: var(--ink-3); border: none; padding: 12px; font-weight: 800; font-family: var(--syne); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 8px; cursor: pointer; width: 100%;">
+      <button onclick="const m=document.getElementById('solana-qr-modal');m.style.opacity='0';setTimeout(()=>m.style.display='none',400);" style="background: var(--lime); color: var(--ink-3); border: none; padding: 12px; font-weight: 800; font-family: var(--space); font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; border-radius: 8px; cursor: pointer; width: 100%;">
         Listo
       </button>
     </div>

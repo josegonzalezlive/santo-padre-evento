@@ -10,7 +10,6 @@
   --forest: #486d54; /* SantoPadre Verde Bosque */
   --line: #124032;
   --mute: #9a9a97;
-  --syne: 'Syne', sans-serif;
   --space: 'Space Grotesk', sans-serif;
   
   /* Acentos de SantoPadre */
@@ -219,7 +218,7 @@ header .back-btn:hover {
 }
 
 .profile-summary h2 {
-  font-family: var(--syne);
+  font-family: var(--space);
   font-size: 15px;
   color: var(--white);
   font-weight: 800;
@@ -374,7 +373,7 @@ header .back-btn:hover {
 
 /* Segment Header */
 .section-title {
-  font-family: var(--syne);
+  font-family: var(--space);
   font-size: 22px;
   font-weight: 800;
   color: var(--white);
@@ -517,7 +516,7 @@ header .back-btn:hover {
 }
 
 .referral-title {
-  font-family: var(--syne);
+  font-family: var(--space);
   font-size: 18px;
   font-weight: 800;
   color: var(--white);
@@ -662,7 +661,7 @@ header .back-btn:hover {
 }
 
 .vip-balance-val {
-  font-family: var(--syne);
+  font-family: var(--space);
   font-size: 38px;
   font-weight: 800;
   color: var(--white);
@@ -780,7 +779,7 @@ header .back-btn:hover {
   font-weight: 800;
   height: 48px;
   font-size: 13px;
-  font-family: var(--syne);
+  font-family: var(--space);
   border-radius: 10px;
   display: inline-flex;
   align-items: center;
@@ -812,7 +811,7 @@ header .back-btn:hover {
   color: var(--bone);
   height: 46px;
   font-size: 12px;
-  font-family: var(--syne);
+  font-family: var(--space);
   font-weight: bold;
   border-radius: 10px;
   display: inline-flex;
@@ -912,7 +911,7 @@ header .back-btn:hover {
 }
 
 .modal-payment-card span {
-  font-family: var(--syne);
+  font-family: var(--space);
   font-size: 13px;
   font-weight: 700;
   color: var(--bone);
@@ -1068,7 +1067,7 @@ header .back-btn:hover {
 }
 
 .vip-tier-card h4 {
-  font-family: var(--syne);
+  font-family: var(--space);
   font-size: 18px;
   color: var(--white);
   text-transform: uppercase;
@@ -1232,7 +1231,7 @@ header .back-btn:hover {
 }
 
 .radio-card-title {
-  font-family: var(--syne);
+  font-family: var(--space);
   font-weight: 700;
   color: var(--white);
   font-size: 14px;
@@ -1512,7 +1511,7 @@ header .back-btn:hover {
 }
 
 .pass-logo-text {
-  font-family: var(--syne);
+  font-family: var(--space);
   font-size: 16px;
   font-weight: 800;
   color: var(--lime);
@@ -2023,7 +2022,7 @@ header .back-btn:hover {
   flex: 1;
 }
 .favorite-card-title {
-  font-family: var(--syne);
+  font-family: var(--space);
   font-weight: 700;
   font-size: 16px;
   color: var(--white);
@@ -2056,7 +2055,7 @@ header .back-btn:hover {
   cursor: pointer;
   text-transform: uppercase;
   transition: all 0.2s ease;
-  font-family: var(--syne);
+  font-family: var(--space);
 }
 .favorite-card-actions .btn-add-cart:hover {
   background: var(--white);
@@ -2112,7 +2111,7 @@ header .back-btn:hover {
   font-size: 12px;
   cursor: pointer;
   text-transform: uppercase;
-  font-family: var(--syne);
+  font-family: var(--space);
 }
 .favorites-empty-state .btn-go-shop:hover {
   background: var(--white);
@@ -2192,7 +2191,7 @@ header .back-btn:hover {
 }
 
 .reward-card-title {
-  font-family: var(--syne);
+  font-family: var(--space);
   font-size: 13px;
   font-weight: 700;
   margin-bottom: 6px;
