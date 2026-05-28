@@ -298,9 +298,34 @@
         <!-- TAB CONTENT: CARTERA -->
         <div class="tab-pane" id="pane-tab-cartera">
           <h3 class="section-title">Mi Cartera Digital</h3>
+          <div class="wallet-grid-layout" style="grid-template-columns: 1fr;">
+            <!-- Columna Única: Puntos y Explicación -->
+            <div class="wallet-left-column" style="max-width: 600px; margin: 0 auto;">
+              <div class="wallet-card">
+                <div class="wallet-balance">
+                  <h3>Balance de Recompensas</h3>
+                  <div class="balance-value" id="wallet-points-value">0 PTS</div>
+                </div>
+                <div class="wallet-brand" style="display: flex; flex-direction: column; align-items: flex-end;">
+                  <img src="assets/logo-sm.webp" alt="SantoPadre®" style="height: 24px; width: auto; object-fit: contain;">
+                  <p style="margin-top: 4px;">Parroquia VIP Member</p>
+                </div>
+              </div>
+              
+              <div class="welcome-box" style="text-align: left; align-items: flex-start; gap: 10px; margin-top: 20px;">
+                <h4 style="color: var(--white); font-weight: 700;">¡Tu saldo de fidelidad está activo!</h4>
+                <p>Puedes canjear tus puntos acumulados por cupones de descuento y comida gratis. Cada compra y acción te otorga puntos para obtener premios directos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT: SELLOS -->
+        <div class="tab-pane" id="pane-tab-sellos">
+          <h3 class="section-title">Tarjeta de Sellos Digital</h3>
           
           <!-- Barra de Progreso por Niveles -->
-          <div class="level-progress-container" style="background: var(--ink-2); border: 1px solid var(--line); border-radius: 12px; padding: 25px 20px; width: 100%;">
+          <div class="level-progress-container" style="background: var(--ink-2); border: 1px solid var(--line); border-radius: 12px; padding: 25px 20px; width: 100%; max-width: 600px; margin: 0 auto 30px auto;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
               <div style="text-align: left;">
                 <span style="font-size: 9px; text-transform: uppercase; color: var(--mute); font-weight: bold; letter-spacing: 0.1em; display: block; margin-bottom: 2px;">Progreso de Niveles</span>
@@ -346,32 +371,6 @@
               </div>
             </div>
           </div>
-          
-          <div class="wallet-grid-layout" style="grid-template-columns: 1fr;">
-            <!-- Columna Única: Puntos y Explicación -->
-            <div class="wallet-left-column" style="max-width: 600px; margin: 0 auto;">
-              <div class="wallet-card">
-                <div class="wallet-balance">
-                  <h3>Balance de Recompensas</h3>
-                  <div class="balance-value" id="wallet-points-value">0 PTS</div>
-                </div>
-                <div class="wallet-brand" style="display: flex; flex-direction: column; align-items: flex-end;">
-                  <img src="assets/logo-sm.webp" alt="SantoPadre®" style="height: 24px; width: auto; object-fit: contain;">
-                  <p style="margin-top: 4px;">Parroquia VIP Member</p>
-                </div>
-              </div>
-              
-              <div class="welcome-box" style="text-align: left; align-items: flex-start; gap: 10px; margin-top: 20px;">
-                <h4 style="color: var(--white); font-weight: 700;">¡Tu saldo de fidelidad está activo!</h4>
-                <p>Puedes canjear tus puntos acumulados por cupones de descuento y comida gratis. Cada compra y acción te otorga puntos para obtener premios directos.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- TAB CONTENT: SELLOS -->
-        <div class="tab-pane" id="pane-tab-sellos">
-          <h3 class="section-title">Tarjeta de Sellos Digital</h3>
           
           <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 20px;">
             <div class="passkit-pass">
