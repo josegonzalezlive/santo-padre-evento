@@ -280,7 +280,7 @@
           currentProfile = updatedProfile;
         }
         
-        alert("¡Feliz Cumpleaños! Recibiste 100 puntos de regalo.");
+        alert("¡Feliz Cumpleaños! Recibiste 100 $PADRE de regalo.");
         updateDashboardUI();
       } catch (err) {
         console.error(err);
@@ -339,7 +339,7 @@
           currentProfile = updatedProfile;
         }
         
-        alert("¡Enviado con éxito! Tu reseña está en verificación por el administrador. Los 150 puntos se sumarán al ser aprobada.");
+        alert("¡Enviado con éxito! Tu reseña está en verificación por el administrador. Los 150 $PADRE se sumarán al ser aprobada.");
         updateDashboardUI();
       } catch (err) {
         console.error(err);
@@ -380,7 +380,7 @@
           currentProfile = updatedProfile;
         }
         
-        alert("¡Simulación exitosa! Reseña aprobada. Se han sumado 150 puntos a tu cuenta.");
+        alert("¡Simulación exitosa! Reseña aprobada. Se han sumado 150 $PADRE a tu cuenta.");
         updateDashboardUI();
       } catch (err) {
         console.error(err);
@@ -438,12 +438,12 @@
           currentProfile = updatedProfile;
         }
         
-        alert("¡Gracias por seguirnos en Instagram! Has recibido 50 puntos de regalo. 📸🎉");
+        alert("¡Gracias por seguirnos en Instagram! Has recibido 50 $PADRE de regalo. 📸🎉");
         updateDashboardUI();
         _isClaimingInstagram = false;
       } catch (err) {
         console.error(err);
-        alert("Error al reclamar los puntos.");
+        alert("Error al reclamar los $PADRE.");
         _isClaimingInstagram = false;
       }
     };
@@ -488,7 +488,7 @@
           currentProfile = updatedProfile;
         }
         
-        alert("¡Enviado con éxito! Tu historia está en verificación por el administrador. Los 100 puntos se sumarán al ser aprobada.");
+        alert("¡Enviado con éxito! Tu historia está en verificación por el administrador. Los 100 $PADRE se sumarán al ser aprobada.");
         updateDashboardUI();
       } catch (err) {
         console.error(err);
@@ -539,7 +539,7 @@
           currentProfile = updatedProfile;
         }
         
-        alert("¡Enviado con éxito! Tu publicación está en verificación por el administrador. Los 200 puntos se sumarán al ser aprobada.");
+        alert("¡Enviado con éxito! Tu publicación está en verificación por el administrador. Los 200 $PADRE se sumarán al ser aprobada.");
         updateDashboardUI();
       } catch (err) {
         console.error(err);
@@ -594,7 +594,7 @@
           currentProfile = updatedProfile;
         }
         
-        alert("¡Enviado con éxito! Tu video de TikTok está en verificación por el administrador. Los 300 puntos se sumarán al ser aprobada.");
+        alert("¡Enviado con éxito! Tu video de TikTok está en verificación por el administrador. Los 300 $PADRE se sumarán al ser aprobada.");
         updateDashboardUI();
       } catch (err) {
         console.error(err);
@@ -1038,7 +1038,7 @@
 
         statusMsg.style.color = "var(--lime)";
         statusMsg.innerText = birthdayAwarded 
-          ? "¡Perfil Guardado! +100 Puntos por tu Cumpleaños 🎉"
+          ? "¡Perfil Guardado! +100 $PADRE por tu Cumpleaños 🎉"
           : "✓ ¡Perfil Guardado con éxito!";
         
         updateDashboardUI();
@@ -1078,7 +1078,7 @@
           currentProfile = { ...currentProfile, points: newPoints, isVip };
         }
         
-        alert("¡Acción de flujo procesada! Sumaste 150 puntos.");
+        alert("¡Acción de flujo procesada! Sumaste 150 $PADRE.");
         updateDashboardUI();
       } catch (err) {
         console.error(err);
@@ -1092,7 +1092,7 @@
       if (_isRedeeming) return;
       
       if ((currentProfile.points || 0) < cost) {
-        alert("No tienes suficientes puntos para canjear esta recompensa.");
+        alert("No tienes suficientes $PADRE para canjear esta recompensa.");
         return;
       }
       
@@ -1165,8 +1165,8 @@
         }
         
         window.showRewardModal({
-          title: `¡Puntos Canjeados!`,
-          message: `Has canjeado ${cost} puntos por <strong>${rewardName}</strong>.<br><br>Tu premio ha sido guardado en la pestaña <strong>Canjear</strong>. Puedes usarlo ahora o más tarde.`,
+          title: `¡$PADRE Canjeados!`,
+          message: `Has canjeado ${cost} $PADRE por <strong>${rewardName}</strong>.<br><br>Tu premio ha sido guardado en la pestaña <strong>Canjear</strong>. Puedes usarlo ahora o más tarde.`,
           emoji: '🎉',
           rewardName: rewardName,
           couponCode: code,
@@ -1265,7 +1265,7 @@
         document.getElementById("sidebar-orders-badge").innerText = numOrders;
 
         if (orders.length === 0) {
-          ordersListContainer.innerHTML = `<div class="empty-orders">Tus pedidos e historial de puntos aparecerán aquí.</div>`;
+          ordersListContainer.innerHTML = `<div class="empty-orders">Tus pedidos e historial de $PADRE aparecerán aquí.</div>`;
           return;
         }
 
@@ -1283,7 +1283,7 @@
               </div>
               <div class="order-details">${itemsStr}</div>
               <div class="order-reward" style="color: ${isNegative ? '#ea4335' : 'var(--accent)'};">
-                ${isNegative ? '' : '+'}${order.pointsEarned} pts
+                ${isNegative ? '' : '+'}${order.pointsEarned} $PADRE
               </div>
             </div>
           `;
@@ -1712,7 +1712,7 @@
             if (data.referralStatus === "pending_purchase") {
               pendingHTML += `<div style="background: rgba(255,255,255,0.03); padding: 10px 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;"><span>👤 ${name}</span> <span style="font-size: 11px; opacity: 0.5;">${dateStr}</span></div>`;
             } else if (data.referralStatus === "completed") {
-              completedHTML += `<div style="background: rgba(180,255,30,0.05); border: 1px solid rgba(180,255,30,0.2); padding: 10px 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;"><span>🎉 ${name}</span> <span style="font-size: 11px; color: var(--lime);">+200 PTS</span></div>`;
+              completedHTML += `<div style="background: rgba(180,255,30,0.05); border: 1px solid rgba(180,255,30,0.2); padding: 10px 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;"><span>🎉 ${name}</span> <span style="font-size: 11px; color: var(--lime);">+200 $PADRE</span></div>`;
             }
           });
           
@@ -1900,14 +1900,14 @@
         const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
         const monthName = monthNames[parseInt(month, 10) - 1] || "";
         const yearStr = year ? ` de ${year}` : "";
-        document.getElementById("quest-birthday-details").innerHTML = `<p style="color: var(--white); font-weight: bold; font-size: 13px; margin-bottom: 0;">🎂 ¡Felicidades! Tu fecha está guardada: ${parseInt(day, 10)} de ${monthName}${yearStr}. Puntos reclamados con éxito. 🎉</p>`;
+        document.getElementById("quest-birthday-details").innerHTML = `<p style="color: var(--white); font-weight: bold; font-size: 13px; margin-bottom: 0;">🎂 ¡Felicidades! Tu fecha está guardada: ${parseInt(day, 10)} de ${monthName}${yearStr}. $PADRE reclamados con éxito. 🎉</p>`;
       }
 
       // Escribir reseña
       if (currentProfile.reviewStatus === "approved" || currentProfile.reviewClaimed) {
         document.getElementById("review-quest-status").innerText = "✓ Completado";
         document.getElementById("review-quest-status").style.color = "var(--lime)";
-        document.getElementById("quest-review-details").innerHTML = `<p style="color: var(--white); font-weight: bold; font-size: 13px; margin-bottom: 0;">Reseña verificada y aprobada con éxito. ¡Recibiste 150 puntos! ⭐️</p>`;
+        document.getElementById("quest-review-details").innerHTML = `<p style="color: var(--white); font-weight: bold; font-size: 13px; margin-bottom: 0;">Reseña verificada y aprobada con éxito. ¡Recibiste 150 $PADRE! ⭐️</p>`;
       } else if (currentProfile.reviewStatus === "pending") {
         document.getElementById("review-quest-status").innerText = "En verificación";
         document.getElementById("review-quest-status").style.color = "orange";
@@ -1925,7 +1925,7 @@
       if (currentProfile.instagramClaimed) {
         document.getElementById("instagram-quest-status").innerText = "✓ Completado";
         document.getElementById("instagram-quest-status").style.color = "var(--lime)";
-        document.getElementById("quest-instagram-details").innerHTML = `<p style="color: var(--white); font-weight: bold; font-size: 13px; margin-bottom: 0;">¡Ya nos sigues en Instagram! Recibiste 50 puntos. 📸</p>`;
+        document.getElementById("quest-instagram-details").innerHTML = `<p style="color: var(--white); font-weight: bold; font-size: 13px; margin-bottom: 0;">¡Ya nos sigues en Instagram! Recibiste 50 $PADRE. 📸</p>`;
       }
 
       // Historias de Instagram (igStoryStatus)
@@ -1935,7 +1935,7 @@
         if (currentProfile.igStoryStatus === "approved" || currentProfile.igStoryClaimed) {
           igstoryQuestStatus.innerText = "✓ Completado";
           igstoryQuestStatus.style.color = "var(--lime)";
-          questIgstoryDetails.innerHTML = `<p style="color: var(--white); font-weight: bold; font-size: 13px; margin-bottom: 0;">¡Historia verificada! Recibiste 100 puntos. 📸✨</p>`;
+          questIgstoryDetails.innerHTML = `<p style="color: var(--white); font-weight: bold; font-size: 13px; margin-bottom: 0;">¡Historia verificada! Recibiste 100 $PADRE. 📸✨</p>`;
         } else if (currentProfile.igStoryStatus === "pending") {
           igstoryQuestStatus.innerText = "En verificación";
           igstoryQuestStatus.style.color = "orange";
@@ -1954,7 +1954,7 @@
         if (currentProfile.igPostStatus === "approved" || currentProfile.igPostClaimed) {
           igpostQuestStatus.innerText = "✓ Completado";
           igpostQuestStatus.style.color = "var(--lime)";
-          questIgpostDetails.innerHTML = `<p style="color: var(--white); font-weight: bold; font-size: 13px; margin-bottom: 0;">¡Publicación verificada! Recibiste 200 puntos. 📸🍽️</p>`;
+          questIgpostDetails.innerHTML = `<p style="color: var(--white); font-weight: bold; font-size: 13px; margin-bottom: 0;">¡Publicación verificada! Recibiste 200 $PADRE. 📸🍽️</p>`;
         } else if (currentProfile.igPostStatus === "pending") {
           igpostQuestStatus.innerText = "En verificación";
           igpostQuestStatus.style.color = "orange";
@@ -1973,7 +1973,7 @@
         if (currentProfile.tiktokStatus === "approved" || currentProfile.tiktokClaimed) {
           tiktokQuestStatus.innerText = "✓ Completado";
           tiktokQuestStatus.style.color = "var(--lime)";
-          questTiktokDetails.innerHTML = `<p style="color: var(--white); font-weight: bold; font-size: 13px; margin-bottom: 0;">¡Video verificado! Recibiste 300 puntos. 🎥🎵</p>`;
+          questTiktokDetails.innerHTML = `<p style="color: var(--white); font-weight: bold; font-size: 13px; margin-bottom: 0;">¡Video verificado! Recibiste 300 $PADRE. 🎥🎵</p>`;
         } else if (currentProfile.tiktokStatus === "pending") {
           tiktokQuestStatus.innerText = "En verificación";
           tiktokQuestStatus.style.color = "orange";

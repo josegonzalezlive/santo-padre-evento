@@ -335,7 +335,7 @@ const CATALOG = {
     referrals: {
       headline: "Salva a un amigo del hambre",
       friendReward: "Bebida Gratis (En su primer pedido > $15)",
-      referrerReward: "200 Puntos de Fidelidad",
+      referrerReward: "200 $PADRE",
       friendCogs: 0.75,
       referrerCogs: 0
     }
