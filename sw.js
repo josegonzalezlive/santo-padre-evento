@@ -1,4 +1,4 @@
-const CACHE_NAME = 'santopadre-cache-v1.68';
+const CACHE_NAME = 'santopadre-cache-v1.69';
 const urlsToCache = [
   '/',
   '/index.html',

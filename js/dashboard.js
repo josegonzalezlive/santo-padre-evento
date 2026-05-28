@@ -1524,6 +1524,9 @@
         expires.setTime(expires.getTime() + (30 * 24 * 60 * 60 * 1000));
         document.cookie = `sp_referral=${encodeURIComponent(refId)};expires=${expires.toUTCString()};path=/`;
         
+        // Set a flag to show the banner ONLY on this specific visit
+        sessionStorage.setItem('show_referral_banner', 'true');
+        
         // Limpiar la URL sin recargar la página
         window.history.replaceState({}, document.title, window.location.pathname);
       }
@@ -1539,7 +1542,12 @@
     // Mostrar el banner del referido si existe
     async function checkAndShowReferralBanner() {
       const refId = getCookie("sp_referral");
-      if (!refId || isMock) return;
+      const shouldShowBanner = sessionStorage.getItem('show_referral_banner') === 'true';
+      
+      if (!refId || !shouldShowBanner || isMock) return;
+      
+      // Clear the flag so it doesn't show on subsequent navigation unless they use the link again
+      sessionStorage.removeItem('show_referral_banner');
 
       const checkDb = setInterval(async () => {
         if (dbService) {
