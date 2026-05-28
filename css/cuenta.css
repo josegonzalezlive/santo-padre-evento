@@ -305,7 +305,7 @@ header .back-btn:hover {
 /* Tab Bar Navigation */
 .tab-bar {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   list-style: none;
 }
@@ -1049,11 +1049,11 @@ header .back-btn:hover {
 
 @media (max-width: 600px) {
   .tab-bar {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   
   .tab-item:last-child {
-    grid-column: span 2;
+    grid-column: auto;
   }
   
   .quest-main {
