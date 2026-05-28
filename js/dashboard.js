@@ -1665,7 +1665,7 @@
 
     window.loadReferrals = async function() {
       if (!currentUser) return;
-      document.getElementById("referral-link-new").value = `https://www.santopadre.store/ref?id=${currentUser.uid}`;
+      document.getElementById("referral-link-new").value = `https://www.santopadre.store/cuenta.html?id=${currentUser.uid}`;
       
       const pendingList = document.getElementById("referrals-pending-list");
       const completedList = document.getElementById("referrals-completed-list");
