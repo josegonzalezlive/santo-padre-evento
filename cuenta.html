@@ -243,6 +243,16 @@
               Cartera
             </button>
           </li>
+          <li class="tab-item" id="tab-sellos" onclick="switchTopTab('sellos')">
+            <button>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+                <line x1="7" y1="8" x2="7" y2="16"></line>
+                <line x1="17" y1="8" x2="17" y2="16"></line>
+              </svg>
+              Sellos
+            </button>
+          </li>
           <li class="tab-item" id="tab-referidos" onclick="switchTopTab('referidos')">
             <button>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -337,9 +347,9 @@
             </div>
           </div>
           
-          <div class="wallet-grid-layout">
-            <!-- Columna Izquierda: Puntos y Explicación -->
-            <div class="wallet-left-column">
+          <div class="wallet-grid-layout" style="grid-template-columns: 1fr;">
+            <!-- Columna Única: Puntos y Explicación -->
+            <div class="wallet-left-column" style="max-width: 600px; margin: 0 auto;">
               <div class="wallet-card">
                 <div class="wallet-balance">
                   <h3>Balance de Recompensas</h3>
@@ -353,93 +363,96 @@
               
               <div class="welcome-box" style="text-align: left; align-items: flex-start; gap: 10px; margin-top: 20px;">
                 <h4 style="color: var(--white); font-weight: 700;">¡Tu saldo de fidelidad está activo!</h4>
-                <p>Puedes canjear tus puntos acumulados por cupones de descuento y comida gratis. Cada compra y acción te otorga puntos y avanza tu tarjeta de sellos digital para obtener premios directos.</p>
+                <p>Puedes canjear tus puntos acumulados por cupones de descuento y comida gratis. Cada compra y acción te otorga puntos para obtener premios directos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB CONTENT: SELLOS -->
+        <div class="tab-pane" id="pane-tab-sellos">
+          <h3 class="section-title">Tarjeta de Sellos Digital</h3>
+          
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 20px;">
+            <div class="passkit-pass">
+              <!-- Header del Pass -->
+              <div class="pass-header">
+                <div class="pass-logo-container">
+                  <img src="assets/logo-sm.webp" alt="SantoPadre® Logo">
+                </div>
+                <div class="pass-header-info">
+                  <span class="pass-label">TARJETA DE SELLOS</span>
+                  <span class="pass-value" id="pass-stamp-count">0 / 5</span>
+                </div>
               </div>
 
+              <!-- Strip Image (Estilo Apple Wallet Strip) -->
+              <div class="pass-strip">
+                <img src="assets/menu/fajitas.avif" alt="Banquete SantoPadre">
+              </div>
+
+              <!-- Perforaciones del ticket (efecto PassKit) -->
+              <div class="pass-divider">
+                <div class="pass-punch left"></div>
+                <div class="pass-punch right"></div>
+              </div>
+
+              <!-- Cuerpo del Pass -->
+              <div class="pass-body">
+                <div class="pass-row">
+                  <div class="pass-field">
+                    <span class="pass-label">TITULAR</span>
+                    <span class="pass-value" id="pass-holder-name">Cargando...</span>
+                  </div>
+                  <div class="pass-field text-right">
+                    <span class="pass-label">NIVEL</span>
+                    <span class="pass-value" id="pass-holder-tier" style="color: var(--lime);">Miembro</span>
+                  </div>
+                </div>
+
+                <!-- Rejilla de Sellos (5 sellos para ascender) -->
+                <div class="pass-stamp-grid">
+                  <div class="pass-stamp-slot" id="stamp-1"></div>
+                  <div class="pass-stamp-slot" id="stamp-2"></div>
+                  <div class="pass-stamp-slot" id="stamp-3"></div>
+                  <div class="pass-stamp-slot" id="stamp-4"></div>
+                  <div class="pass-stamp-slot gold-taco" id="stamp-5"></div>
+                </div>
+
+                <div id="claim-reward-section" style="margin-top: 15px; text-align: center; display: none;">
+                  <button class="quest-btn" onclick="window.claimPendingReward()" style="background: var(--lime); color: var(--ink-3); font-weight: 800; width: 100%; height: 44px; font-size: 14px; border-radius: 8px;">Reclamar Premio de Ascenso</button>
+                </div>
+
+                <p class="pass-promo-text">
+                  Cada $10 de consumo equivale a 1 sello. ¡Haz clic sobre los sellos iluminados de tu tarjeta para reclamar tus premios!
+                </p>
+              </div>
+
+              <!-- Perforaciones inferiores -->
+              <div class="pass-divider">
+                <div class="pass-punch left"></div>
+                <div class="pass-punch right"></div>
+              </div>
+
+              <!-- Barcode del Pass (Simulado PDF417 de Alta Fidelidad) -->
+              <div class="pass-footer">
+                <div class="pass-barcode-container">
+                  <div class="pass-barcode">
+                    <svg id="barcode-svg" class="barcode-svg"></svg>
+                  </div>
+                  <span class="pass-serial" id="pass-serial-id">SP-MOCK-ID</span>
+                </div>
+              </div>
             </div>
 
-            <!-- Columna Derecha: Tarjeta de Fidelización con Sellos (Estilo PassKit Apple Wallet) -->
-            <div class="wallet-right-column">
-              <div class="passkit-pass">
-                <!-- Header del Pass -->
-                <div class="pass-header">
-                  <div class="pass-logo-container">
-                    <img src="assets/logo-sm.webp" alt="SantoPadre® Logo">
-                  </div>
-                  <div class="pass-header-info">
-                    <span class="pass-label">TARJETA DE SELLOS</span>
-                    <span class="pass-value" id="pass-stamp-count">0 / 5</span>
-                  </div>
-                </div>
-
-                <!-- Strip Image (Estilo Apple Wallet Strip) -->
-                <div class="pass-strip">
-                  <img src="assets/menu/fajitas.avif" alt="Banquete SantoPadre">
-                </div>
-
-                <!-- Perforaciones del ticket (efecto PassKit) -->
-                <div class="pass-divider">
-                  <div class="pass-punch left"></div>
-                  <div class="pass-punch right"></div>
-                </div>
-
-                <!-- Cuerpo del Pass -->
-                <div class="pass-body">
-                  <div class="pass-row">
-                    <div class="pass-field">
-                      <span class="pass-label">TITULAR</span>
-                      <span class="pass-value" id="pass-holder-name">Cargando...</span>
-                    </div>
-                    <div class="pass-field text-right">
-                      <span class="pass-label">NIVEL</span>
-                      <span class="pass-value" id="pass-holder-tier" style="color: var(--lime);">Miembro</span>
-                    </div>
-                  </div>
-
-                  <!-- Rejilla de Sellos (5 sellos para ascender) -->
-                  <div class="pass-stamp-grid">
-                    <div class="pass-stamp-slot" id="stamp-1"></div>
-                    <div class="pass-stamp-slot" id="stamp-2"></div>
-                    <div class="pass-stamp-slot" id="stamp-3"></div>
-                    <div class="pass-stamp-slot" id="stamp-4"></div>
-                    <div class="pass-stamp-slot gold-taco" id="stamp-5"></div>
-                  </div>
-
-                  <div id="claim-reward-section" style="margin-top: 15px; text-align: center; display: none;">
-                    <button class="quest-btn" onclick="window.claimPendingReward()" style="background: var(--lime); color: var(--ink-3); font-weight: 800; width: 100%; height: 44px; font-size: 14px; border-radius: 8px;">Reclamar Premio de Ascenso</button>
-                  </div>
-
-                  <p class="pass-promo-text">
-                    Cada $10 de consumo equivale a 1 sello. ¡Haz clic sobre los sellos iluminados de tu tarjeta para reclamar tus premios!
-                  </p>
-                </div>
-
-                <!-- Perforaciones inferiores -->
-                <div class="pass-divider">
-                  <div class="pass-punch left"></div>
-                  <div class="pass-punch right"></div>
-                </div>
-
-                <!-- Barcode del Pass (Simulado PDF417 de Alta Fidelidad) -->
-                <div class="pass-footer">
-                  <div class="pass-barcode-container">
-                    <div class="pass-barcode">
-                      <svg id="barcode-svg" class="barcode-svg"></svg>
-                    </div>
-                    <span class="pass-serial" id="pass-serial-id">SP-MOCK-ID</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Botones de Add to Wallet oficiales -->
-              <div class="wallet-badge-row" style="display: flex; gap: 15px; justify-content: center; margin-top: 15px; flex-wrap: wrap;">
-                <a href="#" class="wallet-badge apple-wallet" onclick="window.downloadPasskitMock('apple'); return false;" style="transition: transform 0.2s;">
-                  <img src="assets/apple-wallet-badge.svg" alt="Add to Apple Wallet" style="height: 40px; display: block;">
-                </a>
-                <a href="#" class="wallet-badge google-wallet" onclick="window.downloadPasskitMock('google'); return false;" style="transition: transform 0.2s;">
-                  <img src="assets/google-wallet-badge.svg" alt="Add to Google Wallet" style="height: 40px; display: block;">
-                </a>
-              </div>
+            <!-- Botones de Add to Wallet oficiales -->
+            <div class="wallet-badge-row" style="display: flex; gap: 15px; justify-content: center; margin-top: 25px; flex-wrap: wrap;">
+              <a href="#" class="wallet-badge apple-wallet" onclick="window.downloadPasskitMock('apple'); return false;" style="transition: transform 0.2s;">
+                <img src="assets/apple-wallet-badge.svg" alt="Add to Apple Wallet" style="height: 40px; display: block;">
+              </a>
+              <a href="#" class="wallet-badge google-wallet" onclick="window.downloadPasskitMock('google'); return false;" style="transition: transform 0.2s;">
+                <img src="assets/google-wallet-badge.svg" alt="Add to Google Wallet" style="height: 40px; display: block;">
+              </a>
             </div>
           </div>
         </div>
