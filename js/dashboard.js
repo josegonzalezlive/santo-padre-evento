@@ -1515,6 +1515,20 @@
       }
     }
 
+    // === REFERRAL TRACKING (URL PARSER) ===
+    (function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const refId = urlParams.get('id');
+      if (refId) {
+        const expires = new Date();
+        expires.setTime(expires.getTime() + (30 * 24 * 60 * 60 * 1000));
+        document.cookie = `sp_referral=${encodeURIComponent(refId)};expires=${expires.toUTCString()};path=/`;
+        
+        // Limpiar la URL sin recargar la página
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    })();
+
     function getCookie(name) {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
