@@ -61,7 +61,7 @@ header .logo {
 }
 
 header .logo img {
-  height: 74px;
+  height: 50px;
   width: auto;
   display: block;
 }
@@ -662,7 +662,7 @@ header .back-btn:hover {
 }
 
 .vip-balance-val {
-  /* font-family: var(--syne); */
+  font-family: var(--syne);
   font-size: 38px;
   font-weight: 800;
   color: var(--white);
