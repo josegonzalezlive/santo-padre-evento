@@ -1272,12 +1272,31 @@
         const numOrders = orders.filter(o => o.status !== "canjeado").length;
         document.getElementById("sidebar-orders-badge").innerText = numOrders;
 
-        if (orders.length === 0) {
+        let sumPointsFromOrders = orders.reduce((sum, o) => sum + (o.pointsEarned || 0), 0);
+        let missingPoints = (currentProfile.points || 0) - sumPointsFromOrders;
+        
+        let extraRowHTML = "";
+        if (missingPoints > 0) {
+           extraRowHTML = `
+            <div class="order-card" style="margin-bottom: 12px; background: rgba(180, 255, 30, 0.05); border: 1px dashed rgba(180, 255, 30, 0.3);">
+              <div class="order-meta">
+                <span class="order-date">Acumulado Recompensas</span>
+                <span class="order-total" style="color: var(--lime);">Completado</span>
+              </div>
+              <div class="order-details" style="color: var(--mute);">Misiones, referidos y regalos</div>
+              <div class="order-reward" style="color: var(--lime); font-weight: bold;">
+                +${missingPoints} $PADRE
+              </div>
+            </div>
+           `;
+        }
+
+        if (orders.length === 0 && missingPoints <= 0) {
           ordersListContainer.innerHTML = `<div class="empty-orders">Tus pedidos e historial de $PADRE aparecerán aquí.</div>`;
           return;
         }
 
-        ordersListContainer.innerHTML = orders.map(order => {
+        let ordersHTML = orders.map(order => {
           const dateStr = new Date(order.createdAt).toLocaleDateString("es-ES", {
             day: "numeric", month: "short", hour: "2-digit", minute: "2-digit"
           });
@@ -1296,6 +1315,8 @@
             </div>
           `;
         }).join("");
+
+        ordersListContainer.innerHTML = extraRowHTML + ordersHTML;
         
         // Sincronizar dirección de envío en la pestaña correspondiente
         const lastDeliveryOrder = orders.find(o => o.orderType === "delivery" && o.address1);
