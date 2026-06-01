@@ -342,6 +342,7 @@ function initFormHandler(checkoutData) {
       address2: formData.get('address2'),
       reference: formData.get('reference'),
       payment: formData.get('payment'),
+      documentId: formData.get('documentId'),
       items: checkoutData.items,
       isVip: checkoutData.isVip
     };
@@ -456,6 +457,7 @@ function sendToWhatsApp(order) {
 
   let message = `¡Hola SantoPadre! ⛪\n\n*NUEVO PEDIDO WEB*\n\n`;
   message += `👤 *Cliente:* ${order.name}\n`;
+  if (order.documentId) message += `🪪 *C.I.:* ${order.documentId}\n`;
   message += `📧 *Email:* ${order.email}\n`;
   message += `📞 *Teléfono:* ${order.phone}\n`;
   message += `📍 *Tipo:* ${order.orderType.toUpperCase()}\n`;

@@ -153,6 +153,10 @@
               <label for="name">Nombre Completo</label>
               <input type="text" id="name" name="name" required placeholder="Tu Nombre">
             </div>
+            <div class="field">
+              <label for="documentId">Cédula de Identidad</label>
+              <input type="text" id="documentId" name="documentId" required placeholder="Ej. V-12345678">
+            </div>
           </div>
           <div class="input-row">
             <div class="field">
@@ -231,6 +235,7 @@
             }
           </style>
         </section>
+
 
         <section class="form-group">
           <h3>3. Método de Pago</h3>
@@ -314,6 +319,31 @@
 
     <!-- RIGHT: SUMMARY -->
     <aside class="checkout-summary">
+      <div style="background: rgba(220, 254, 84, 0.05); border: 1px dashed #dcfe54; padding: 20px 24px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(220, 254, 84, 0.05); border-radius: 8px;">
+        <div style="display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px;">
+          <div style="flex-shrink: 0; margin-top: 2px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dcfe54" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <div style="text-align: left; line-height: 1.5;">
+            <span style="display: block; font-size: 15px; font-weight: 900; letter-spacing: 0.03em; margin-bottom: 8px; text-transform: uppercase; color: #dcfe54;">Importante: No pagues todavía</span>
+            <span style="display: block; font-size: 13px; font-weight: 500; opacity: 0.9; color: var(--bone); line-height: 1.6;">
+              Por favor, ten a mano los detalles de tu pedido. Es obligatorio que <strong>confirmes tu orden en el botón de abajo</strong> (vía WhatsApp) antes de realizar cualquier transferencia.
+            </span>
+          </div>
+        </div>
+        <div style="background: rgba(0,0,0,0.4); padding: 12px 14px; border-radius: 6px; border: 1px solid rgba(220,254,84,0.15);">
+          <span style="display: block; font-size: 12px; font-weight: 500; color: var(--bone); line-height: 1.5; text-align: left;">
+            <em style="color: #dcfe54; font-style: normal; font-weight: 800; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; margin-right: 4px;">Ejemplo:</em> No hagas el Pago Móvil primero. Confirma tu pedido con nosotros y después realizas el pago.
+          </span>
+        </div>
+        <a href="#final-checkout-btn" style="display: inline-block; margin-top: 16px; padding: 10px 0; font-size: 13px; font-weight: 800; color: #dcfe54; text-transform: uppercase; letter-spacing: 0.05em; text-decoration: none; border-bottom: 1px solid #dcfe54; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+          👇 BAJA Y CONFIRMA TU PEDIDO AHORA
+        </a>
+      </div>
       <div class="summary-box">
         <h3>Tu Pedido</h3>
         <div id="summary-items" class="summary-items">
@@ -365,11 +395,24 @@
           </div>
         </div>
 
-        <button type="submit" form="checkout-form" class="btn primary checkout-submit">
+        <button type="submit" id="final-checkout-btn" form="checkout-form" class="btn primary checkout-submit" style="scroll-margin-top: 100px;">
           <span>Confirmar y Enviar a WhatsApp</span>
         </button>
       </div>
       <a href="index.html?cart=open" class="back-link">← Volver al Carrito</a>
+
+      <!-- Schedule Section -->
+      <div style="background: rgba(255,255,255,0.02); padding: 12px 16px; border-radius: 6px; margin-top: 25px; margin-bottom: -10px; border: 1px dashed var(--line); border-left: 4px solid #dcfe54;">
+        <h4 style="color: #dcfe54; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          Nuestros Horarios
+        </h4>
+        <p style="color: var(--bone); font-size: 12px; line-height: 1.4; margin: 0;">
+          <strong>Lunes a Sábado:</strong> 7:30 PM a 10:30 PM<br>
+          <span style="color: var(--mute); font-size: 10px; margin-top: 4px; display: block;">📍 BuenaVentura Pádel, Araure</span>
+          <span style="color: var(--mute); font-size: 10px; margin-top: 2px; display: block;">📞 +58 422-5540246</span>
+        </p>
+      </div>
 
       <!-- Reviews Section -->
       <div id="checkout-reviews" class="checkout-reviews"></div>

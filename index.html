@@ -3541,6 +3541,164 @@
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3934.1245192509073!2d-69.2224774958138!3d9.58453373041975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e7dc100197d6185%3A0x1b330b6d99029f1c!2sSantoPadre%C2%AE%20%7C%20Comida%20Mexicana!5e0!3m2!1ses!2sve!4v1778724477471!5m2!1ses!2sve"
     style="display:none; width:0; height:0; border:0;" aria-hidden="true" tabindex="-1"
     title="SantoPadre Location"></iframe>
+
+  <!-- POPUPS (Ubicación/Horario y WhatsApp) -->
+  <style>
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-decoration: none;
+      background-color: transparent;
+    }
+    .whatsapp-float:hover {
+      transform: translateY(-5px) scale(1.05);
+    }
+    .whatsapp-float svg {
+      width: 100%;
+      height: 100%;
+    }
+    body:has(.cart-panel.active) .whatsapp-float,
+    body:has(.overlay.active) .whatsapp-float {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: scale(0.8);
+    }
+
+    /* Info Modal Popup */
+    .info-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(4, 28, 20, 0.8);
+      backdrop-filter: blur(5px);
+      z-index: 2000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .info-modal-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    .info-modal-content {
+      background: var(--ink);
+      border: 1px solid var(--accent);
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 90%;
+      width: 450px;
+      position: relative;
+      box-shadow: 0px 10px 30px rgba(229, 93, 39, 0.2);
+      transform: translateY(20px);
+      transition: transform 0.4s ease;
+      color: var(--bone);
+    }
+    .info-modal-overlay.show .info-modal-content {
+      transform: translateY(0);
+    }
+    .info-modal-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 35px;
+      cursor: pointer;
+      color: var(--mute);
+      transition: color 0.3s;
+      line-height: 1;
+    }
+    .info-modal-close:hover {
+      color: var(--accent);
+    }
+    .info-modal-content h3 {
+      font-family: 'Gilda Display', serif;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+    .info-modal-content p {
+      font-family: 'Archivo', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+    .info-modal-content strong {
+      color: #fff;
+    }
+    
+    @media (max-width: 768px) {
+      .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/584225540246" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+      <path fill="#25D366" d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.964 9.964 0 0 0 1.333 4.993L2 22l5.233-1.237a10.014 10.014 0 0 0 4.779 1.217h.004c5.505 0 9.988-4.478 9.989-9.984 0-2.669-1.037-5.176-2.926-7.066A9.953 9.953 0 0 0 12.012 2z"/>
+      <path fill="#FFFFFF" d="M17.472 14.38c-.273-.136-1.616-.796-1.866-.887-.251-.091-.433-.136-.615.136-.182.273-.705.887-.864 1.069-.159.182-.319.205-.592.068-.273-.136-1.153-.424-2.196-1.353-.811-.722-1.359-1.614-1.518-1.887-.159-.273-.017-.42.12-.556.124-.123.273-.318.409-.477.136-.159.182-.273.273-.455.091-.182.045-.341-.023-.477-.068-.136-.615-1.479-.842-2.025-.221-.531-.446-.459-.614-.467-.159-.007-.34-.009-.522-.009s-.477.068-.727.341c-.251.273-.956.932-.956 2.273 0 1.341.978 2.637 1.114 2.819.136.182 1.923 2.933 4.659 4.113.652.282 1.161.45 1.558.577.653.208 1.247.178 1.716.108.525-.078 1.616-.659 1.843-1.296.228-.636.228-1.181.16-1.296-.069-.113-.251-.181-.524-.318z"/>
+    </svg>
+  </a>
+
+  <!-- Info Modal Popup -->
+  <div class="info-modal-overlay" id="infoModal">
+    <div class="info-modal-content">
+      <span class="info-modal-close" id="infoModalClose">&times;</span>
+      <h3>¡Visítanos!</h3>
+      <p><strong>Ubicación:</strong> BuenaVentura Pádel, Araure.</p>
+      <p><strong>Horario:</strong> Lunes a sábado, desde las 7:30 PM hasta las 10:30 PM.</p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Show popup after 2 seconds
+      setTimeout(function() {
+        var modal = document.getElementById('infoModal');
+        if (modal) {
+          modal.classList.add('show');
+        }
+      }, 2000);
+
+      // Close button
+      var closeBtn = document.getElementById('infoModalClose');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+          document.getElementById('infoModal').classList.remove('show');
+        });
+      }
+
+      // Close on overlay click
+      var overlay = document.getElementById('infoModal');
+      if (overlay) {
+        overlay.addEventListener('click', function(e) {
+          if (e.target === overlay) {
+            overlay.classList.remove('show');
+          }
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>
