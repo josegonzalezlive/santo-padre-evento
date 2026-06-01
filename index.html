@@ -3582,8 +3582,8 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(4, 28, 20, 0.8);
-      backdrop-filter: blur(5px);
+      background: rgba(4, 28, 20, 0.9);
+      backdrop-filter: blur(8px);
       z-index: 2000;
       display: flex;
       justify-content: center;
@@ -3597,49 +3597,100 @@
       visibility: visible;
     }
     .info-modal-content {
-      background: var(--ink);
-      border: 1px solid var(--accent);
+      background: linear-gradient(145deg, #0f2418, #0a170f);
+      border: 1px solid rgba(220, 254, 84, 0.3);
       padding: 40px;
-      border-radius: 12px;
+      border-radius: 16px;
       text-align: center;
       max-width: 90%;
-      width: 450px;
+      width: 420px;
       position: relative;
-      box-shadow: 0px 10px 30px rgba(229, 93, 39, 0.2);
-      transform: translateY(20px);
-      transition: transform 0.4s ease;
+      box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(220, 254, 84, 0.1);
+      transform: translateY(30px) scale(0.95);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       color: var(--bone);
     }
     .info-modal-overlay.show .info-modal-content {
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
     .info-modal-close {
       position: absolute;
       top: 15px;
       right: 20px;
-      font-size: 35px;
+      font-size: 32px;
       cursor: pointer;
       color: var(--mute);
       transition: color 0.3s;
       line-height: 1;
     }
     .info-modal-close:hover {
-      color: var(--accent);
+      color: #dcfe54;
+    }
+    .info-modal-icon {
+      margin: 0 auto 20px auto;
+      display: flex;
+      justify-content: center;
+    }
+    .info-modal-icon img {
+      width: 140px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 15px rgba(220, 254, 84, 0.15));
     }
     .info-modal-content h3 {
       font-family: 'Gilda Display', serif;
-      font-size: 28px;
-      margin-bottom: 20px;
-      color: var(--accent);
+      font-size: 34px;
+      margin-bottom: 25px;
+      color: var(--bone);
+      letter-spacing: 1px;
     }
-    .info-modal-content p {
-      font-family: 'Archivo', sans-serif;
-      font-size: 16px;
+    .info-modal-details {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 16px;
+      padding: 24px 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 30px;
+    }
+    .info-item {
+      margin-bottom: 24px;
+    }
+    .info-item:last-child {
+      margin-bottom: 0;
+    }
+    .info-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--mute);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+    .info-value {
+      display: block;
+      font-size: 15px;
+      font-weight: 500;
       line-height: 1.6;
-      margin-bottom: 15px;
+      color: var(--bone);
     }
-    .info-modal-content strong {
-      color: #fff;
+    .info-modal-btn {
+      background: #dcfe54;
+      color: #000;
+      border: none;
+      padding: 16px 30px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    .info-modal-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(220, 254, 84, 0.15);
+      background: #e6ff7a;
     }
     
     @media (max-width: 768px) {
@@ -3664,9 +3715,26 @@
   <div class="info-modal-overlay" id="infoModal">
     <div class="info-modal-content">
       <span class="info-modal-close" id="infoModalClose">&times;</span>
+      <div class="info-modal-icon">
+        <img src="assets/logo.webp" alt="SantoPadre Logo">
+      </div>
       <h3>¡Visítanos!</h3>
-      <p><strong>Ubicación:</strong> BuenaVentura Pádel, Araure.</p>
-      <p><strong>Horario:</strong> Lunes a sábado, desde las 7:30 PM hasta las 10:30 PM.</p>
+      <div class="info-modal-details">
+        <div class="info-item">
+          <span class="info-label">📍 UBICACIÓN</span>
+          <span class="info-value">
+            <a href="https://www.google.com/maps/search/?api=1&query=BuenaVentura+Pádel,+Araure" target="_blank" style="color: #dcfe54; text-decoration: underline; text-underline-offset: 4px; display: inline-flex; align-items: center; gap: 6px; font-weight: 500; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+              BuenaVentura Pádel, Araure
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </a>
+          </span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">🕒 HORARIOS</span>
+          <span class="info-value">Lunes a sábado<br><span style="opacity: 0.8; font-size: 14px;">Desde las 7:30 PM hasta las 10:30 PM.</span></span>
+        </div>
+      </div>
+      <button class="info-modal-btn" onclick="document.getElementById('infoModal').classList.remove('show');">Entendido</button>
     </div>
   </div>
 
