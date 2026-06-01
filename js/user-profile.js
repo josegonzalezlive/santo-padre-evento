@@ -177,8 +177,7 @@ export async function loginWithGoogle() {
     if (isMock) {
       await authService.signInWithPopup();
     } else {
-      const { signInWithPopup } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
-      await signInWithPopup(authService, googleProvider);
+      await services.signInWithPopup(authService, googleProvider);
     }
   } catch (error) {
     console.error("Error al iniciar sesión con Google:", error);

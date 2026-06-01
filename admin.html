@@ -994,7 +994,7 @@
           localStorage.setItem("santopadre_mock_user", JSON.stringify(mockUser));
           auth.onAuthStateChangedListeners.forEach(l => l(mockUser));
         } else {
-          const { signInWithPopup } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
+          const { signInWithPopup } = getActiveServices();
           await signInWithPopup(auth, googleProvider);
         }
       } catch (error) {

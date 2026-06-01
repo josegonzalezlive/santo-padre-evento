@@ -1,11 +1,12 @@
     import { getActiveServices } from "./firebase-config.js";
 
-    let authService, dbService, isMock, googleProvider;
+    let authService, dbService, isMock, googleProvider, signInWithPopupFunc;
     const services = getActiveServices();
     authService = services.auth;
     dbService = services.db;
     isMock = services.isMock;
     googleProvider = services.googleProvider;
+    signInWithPopupFunc = services.signInWithPopup;
 
     let currentUser = null;
     let currentProfile = null;
@@ -1312,8 +1313,7 @@
         if (isMock) {
           await authService.signInWithPopup();
         } else {
-          const { signInWithPopup } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
-          await signInWithPopup(authService, googleProvider);
+          await signInWithPopupFunc(authService, googleProvider);
         }
       } catch (err) {
         console.error(err);

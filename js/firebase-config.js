@@ -2,7 +2,7 @@
 
 const firebaseConfig = {
   apiKey: "AIzaSyCqk5WKecJxhqoT-74kkuZE_dwH0oQWOFU",
-  authDomain: "sound-bee-495502-i0.firebaseapp.com",
+  authDomain: "auth.santopadre.store",
   projectId: "sound-bee-495502-i0",
   storageBucket: "sound-bee-495502-i0.firebasestorage.app",
   messagingSenderId: "170027889930",
@@ -28,6 +28,7 @@ let app = null;
 let auth = null;
 let db = null;
 let googleProvider = null;
+let signInWithPopupFunc = null;
 let isMock = false;
 
 // Validar si las credenciales son las por defecto
@@ -39,13 +40,14 @@ if (!firebaseConfig.apiKey || firebaseConfig.apiKey.includes("YOUR_")) {
 try {
   // Importamos los SDKs desde CDN oficial
   const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js");
-  const { getAuth, GoogleAuthProvider } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
+  const { getAuth, GoogleAuthProvider, signInWithPopup } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js");
   const { getFirestore } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
 
   app = initializeApp(firebaseConfig);
   auth = getAuth(app);
   db = getFirestore(app);
   googleProvider = new GoogleAuthProvider();
+  signInWithPopupFunc = signInWithPopup;
 } catch (error) {
   console.error("🚨 Error inicializando Firebase real:", error);
 }
@@ -56,6 +58,7 @@ export const getActiveServices = () => {
     auth,
     db,
     googleProvider,
+    signInWithPopup: signInWithPopupFunc,
     isMock: false
   };
 };
