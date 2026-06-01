@@ -49,7 +49,7 @@ exports.generateGooglePassUrl = functions.https.onRequest((req, res) => {
 
       // 4. Crear estructura del objeto LoyaltyObject de Google Wallet
       const loyaltyObject = {
-        id: `${issuerId}.${userId}`,
+        id: `${issuerId}.${userId}-v2`,
         classId: classId,
         state: "ACTIVE",
         barcode: {
@@ -61,22 +61,30 @@ exports.generateGooglePassUrl = functions.https.onRequest((req, res) => {
         accountName: name,
         loyaltyPoints: {
           balance: {
-            int: stamps
+            string: `${stamps} de 6`
           },
-          label: "Sellos"
+          label: "Sellos Acumulados"
         },
-        heroImage: {
-          sourceUri: {
-            uri: "https://www.santopadre.store/assets/menu/fajitas.avif"
+        secondaryLoyaltyPoints: {
+          balance: {
+            string: stamps >= 6 ? `¡Recompensa Lista! - ${stamps >= 5 ? 'Nivel 1' : 'Miembro'}` : `Faltan ${6 - stamps} - ${stamps >= 5 ? 'Nivel 1' : 'Miembro'}`
+          },
+          label: "Estado"
+        },
+        textModulesData: [
+          {
+            header: "NIVEL DE RECOMPENSAS",
+            body: stamps >= 5 ? "El Iniciado (Nivel 1)" : "Miembro",
+            id: "tier_module"
           }
-        }
+        ]
       };
 
       // 5. Generar Claims del JWT de guardado
       const claims = {
         iss: serviceAccount.client_email,
         aud: "google",
-        origins: ["https://www.santopadre.store", "http://localhost:3000", "http://localhost:8000", "http://127.0.0.1:8000"],
+        origins: ["https://www.santopadre.store", "http://localhost:3000", "http://localhost:8000", "http://127.0.0.1:8000", "http://localhost:8081", "http://127.0.0.1:8081", "https://localhost:8081"],
         typ: "savetowallet",
         payload: {
           loyaltyObjects: [loyaltyObject]

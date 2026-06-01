@@ -35,7 +35,7 @@ if (!isMock) {
 }
 
 // Inicialización de la UI y listeners
-document.addEventListener("DOMContentLoaded", () => {
+function init() {
   setupProfileButton();
   listenToAuthChanges();
 
@@ -47,7 +47,13 @@ document.addEventListener("DOMContentLoaded", () => {
       window.closeWishlistRegisterModal();
     });
   }
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
+}
 
 // Listener del estado de autenticación
 function listenToAuthChanges() {
@@ -289,9 +295,9 @@ function setupProfileButton() {
   // Evitar doble inicialización si ya existe
   if (document.getElementById("profile-trigger-btn")) return;
 
-  // 1. Crear botón de Wishlist (Desktop Only)
+  // 1. Crear botón de Wishlist
   const wishlistBtn = document.createElement("button");
-  wishlistBtn.className = "icon-btn wishlist-trigger desktop-only";
+  wishlistBtn.className = "icon-btn wishlist-trigger";
   wishlistBtn.id = "wishlist-trigger-btn";
   wishlistBtn.setAttribute("aria-label", "Ver lista de deseos");
   wishlistBtn.innerHTML = `
@@ -323,9 +329,13 @@ function setupProfileButton() {
   actionsContainer.insertBefore(profileBtn, cartTrigger);
 }
 
-// Abrir/Cerrar panel de perfil (Redirige a cuenta.html en nueva pestaña)
+// Abrir/Cerrar panel de perfil (Redirige según el estado de sesión)
 export function toggleProfilePanel() {
-  window.open("cuenta.html", "_blank");
+  if (currentUser) {
+    window.location.href = "cuenta.html";
+  } else {
+    window.location.href = "signup.html";
+  }
 }
 
 // Sincronizar el estado VIP con la UI nativa del carrito y del localstorage

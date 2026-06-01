@@ -69,8 +69,8 @@
     <!-- COLUMNA DERECHA: FORMULARIO -->
     <div class="login-form-column">
       <div class="welcome-box" style="max-width: 450px; width: 100%; background: transparent; border: none; box-shadow: none; padding: 0; margin-top: 0;">
-        <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; color: var(--white); line-height: 1.2; letter-spacing: 0.03em;">Portal de Recompensas</h3>
-        <p style="margin-bottom: 25px; color: var(--mute); font-size: 14px; line-height: 1.6; font-family: 'Space Grotesk', sans-serif;">Inicia sesión o regístrate para acumular $PADRE en cada visita, desbloquear premios sagrados y llevar tu devoción por el sabor de SantoPadre® al siguiente nivel.</p>
+        <h3 style="font-family: 'Space Grotesk', sans-serif; font-size: 22px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; color: var(--white); line-height: 1.2; letter-spacing: 0.03em;">Crear Cuenta</h3>
+        <p style="margin-bottom: 25px; color: var(--mute); font-size: 14px; line-height: 1.6; font-family: 'Space Grotesk', sans-serif;">Regístrate para acumular $PADRE en cada visita, desbloquear premios sagrados y llevar tu devoción por el sabor de SantoPadre® al siguiente nivel.</p>
         
         <!-- GOOGLE LOGIN BUTTON -->
         <button class="google-btn" id="login-google-btn" style="margin: 0 0 20px 0; width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px; background: var(--white); color: #1f1f1f; border: 1px solid #dadce0; padding: 12px 24px; border-radius: 8px; font-family: 'Archivo', sans-serif; font-weight: 800; font-size: 14px; text-transform: uppercase; cursor: pointer; transition: all 0.2s;">
@@ -91,6 +91,10 @@
 
         <div id="email-auth-form" style="display: flex; flex-direction: column; gap: 16px; width: 100%; text-align: left;">
           <div class="form-group">
+            <span class="form-label" style="font-size: 10px; font-weight: bold; color: var(--mute);">Nombre Completo</span>
+            <input type="text" id="auth-name" class="profile-input" placeholder="Juan Pérez" style="width: 100%; height: 44px; font-size: 13.5px; background: var(--ink-3); border-color: var(--line); border-radius: 8px;">
+          </div>
+          <div class="form-group">
             <span class="form-label" style="font-size: 10px; font-weight: bold; color: var(--mute);">Correo Electrónico</span>
             <input type="email" id="auth-email" class="profile-input" placeholder="ejemplo@correo.com" style="width: 100%; height: 44px; font-size: 13.5px; background: var(--ink-3); border-color: var(--line); border-radius: 8px;">
           </div>
@@ -99,10 +103,10 @@
             <input type="password" id="auth-password" class="profile-input" placeholder="••••••••" style="width: 100%; height: 44px; font-size: 13.5px; background: var(--ink-3); border-color: var(--line); border-radius: 8px;">
           </div>
           <button class="admin-btn" id="email-submit-btn" style="width: 100%; margin-top: 5px; height: 46px; background: var(--accent); color: var(--white); font-family: var(--space); font-weight: 800; text-transform: uppercase; border-radius: 8px; border: none; cursor: pointer; transition: all 0.2s;">
-            Iniciar Sesión
+            Crear Cuenta
           </button>
           <div style="text-align: center; margin-top: 10px;">
-            <a href="signup.html" style="color: var(--lime); font-size: 11px; text-decoration: underline; font-family: var(--space); letter-spacing: 0.05em; text-transform: uppercase; font-weight: bold;">¿No tienes cuenta? Regístrate</a>
+            <a href="cuenta.html" style="color: var(--lime); font-size: 11px; text-decoration: underline; font-family: var(--space); letter-spacing: 0.05em; text-transform: uppercase; font-weight: bold;">¿Ya tienes cuenta? Inicia sesión</a>
           </div>
         </div>
 

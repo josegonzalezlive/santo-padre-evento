@@ -928,6 +928,13 @@
 
       function runMockAlert(walletType, id, name, stamps, showsNote = false) {
         let msg = "";
+        function getTierName(s) {
+          if (s >= 20) return "El Padrino (Nivel 5)";
+          if (s >= 15) return "El Jefe (Nivel 4)";
+          if (s >= 10) return "El Compadre (Nivel 3)";
+          if (s >= 5) return "El Creyente (Nivel 2)";
+          return "El Iniciado (Nivel 1)";
+        }
         const tierName = getTierName(stamps);
         if (walletType === 'apple') {
           msg = `🍎 [SIMULACIÓN] Añadiendo a Apple Wallet...\n\n` +
@@ -1314,22 +1321,24 @@
     });
 
     // Lógica para Autenticación con Email y Contraseña (Real y Mock)
-    let authMode = "login";
+    let authMode = window.location.pathname.includes("signup.html") ? "signup" : "login";
     const toggleLink = document.getElementById("toggle-auth-mode-link");
     const submitBtn = document.getElementById("email-submit-btn");
 
-    toggleLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (authMode === "login") {
-        authMode = "signup";
-        submitBtn.textContent = "Registrarse";
-        toggleLink.textContent = "¿Ya tienes cuenta? Inicia Sesión";
-      } else {
-        authMode = "login";
-        submitBtn.textContent = "Iniciar Sesión";
-        toggleLink.textContent = "¿No tienes cuenta? Regístrate";
-      }
-    });
+    if (toggleLink) {
+      toggleLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (authMode === "login") {
+          authMode = "signup";
+          submitBtn.textContent = "Registrarse";
+          toggleLink.textContent = "¿Ya tienes cuenta? Inicia Sesión";
+        } else {
+          authMode = "login";
+          submitBtn.textContent = "Iniciar Sesión";
+          toggleLink.textContent = "¿No tienes cuenta? Regístrate";
+        }
+      });
+    }
 
     submitBtn.addEventListener("click", async () => {
       const email = document.getElementById("auth-email").value.trim();
@@ -1437,6 +1446,11 @@
         // Obtener o crear perfil en BD
         currentProfile = await getOrCreateProfile(user);
         
+        if (window.location.pathname.includes("signup.html")) {
+          window.location.href = "cuenta.html";
+          return;
+        }
+
         document.getElementById("login-container").style.display = "none";
         document.getElementById("dashboard-container").style.display = "grid";
         
