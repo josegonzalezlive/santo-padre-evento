@@ -1828,6 +1828,41 @@
     // Actualizar elementos dinámicos del Dashboard
     function updateDashboardUI() {
       if (!currentUser || !currentProfile) return;
+
+      // Helper function to safely parse birthday in YYYY-MM-DD or DD-MM-YYYY format
+      function parseBirthday(birthdayStr) {
+        if (!birthdayStr) return { day: "", month: "", year: "" };
+        const cleanStr = birthdayStr.replace(/\//g, "-");
+        const parts = cleanStr.split("-");
+        let d = "", m = "", y = "";
+        
+        if (parts.length === 3) {
+          if (parts[0].length === 4) {
+            // YYYY-MM-DD
+            y = parts[0];
+            m = parts[1];
+            d = parts[2];
+          } else {
+            // DD-MM-YYYY
+            d = parts[0];
+            m = parts[1];
+            y = parts[2];
+          }
+        }
+        
+        // Normalize day and month to be 2 digits (e.g. "5" -> "05")
+        if (d && !isNaN(d)) {
+          d = String(parseInt(d, 10)).padStart(2, "0");
+        }
+        if (m && !isNaN(m)) {
+          m = String(parseInt(m, 10)).padStart(2, "0");
+        }
+        if (y && !isNaN(y)) {
+          y = String(parseInt(y, 10));
+        }
+        
+        return { day: d, month: m, year: y };
+      }
       
       let points = currentProfile.points || 0;
       const isVip = currentProfile.isVip || false;
@@ -2033,14 +2068,22 @@
         document.getElementById("birthday-quest-status").innerText = "✓ Completado";
         document.getElementById("birthday-quest-status").style.color = "var(--lime)";
         
-        const parts = (currentProfile.birthday || "").split("-");
-        const day = parts[0] || "";
-        const month = parts[1] || "";
-        const year = parts[2] || "";
+        const bdayParsed = parseBirthday(currentProfile.birthday);
+        const day = bdayParsed.day;
+        const month = bdayParsed.month;
+        const year = bdayParsed.year;
         const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-        const monthName = monthNames[parseInt(month, 10) - 1] || "";
+        const monthName = month && parseInt(month, 10) ? monthNames[parseInt(month, 10) - 1] || "" : "";
+        const dayStr = day && parseInt(day, 10) ? parseInt(day, 10) : "";
         const yearStr = year ? ` de ${year}` : "";
-        document.getElementById("quest-birthday-details").innerHTML = `<p style="color: var(--white); font-weight: bold; font-size: 13px; margin-bottom: 0;">🎂 ¡Felicidades! Tu fecha está guardada: ${parseInt(day, 10)} de ${monthName}${yearStr}. $PADRE reclamados con éxito. 🎉</p>`;
+        
+        let detailsHtml = "";
+        if (dayStr && monthName) {
+          detailsHtml = `<p style="color: var(--white); font-weight: bold; font-size: 13px; margin-bottom: 0;">🎂 ¡Felicidades! Tu fecha está guardada: ${dayStr} de ${monthName}${yearStr}. $PADRE reclamados con éxito. 🎉</p>`;
+        } else {
+          detailsHtml = `<p style="color: var(--white); font-weight: bold; font-size: 13px; margin-bottom: 0;">🎂 ¡Felicidades! Tu fecha está guardada. $PADRE reclamados con éxito. 🎉</p>`;
+        }
+        document.getElementById("quest-birthday-details").innerHTML = detailsHtml;
       }
 
       // Escribir reseña
@@ -2142,10 +2185,10 @@
       document.getElementById("profile-phone").value = currentProfile.phone || "";
       document.getElementById("profile-gender").value = currentProfile.gender || "";
       if (currentProfile.birthday) {
-        const parts = currentProfile.birthday.split("-");
-        const day = parts[0] || "";
-        const month = parts[1] || "";
-        const year = parts[2] || "";
+        const bdayParsed = parseBirthday(currentProfile.birthday);
+        const day = bdayParsed.day;
+        const month = bdayParsed.month;
+        const year = bdayParsed.year;
         
         document.getElementById("birthday-year-select").value = year;
         document.getElementById("birthday-month-select").value = month;
