@@ -141,6 +141,19 @@ async function getOrCreateUserProfile(user) {
         createdAt: new Date().toISOString()
       };
       await dbService.setDoc(userRef, newProfile);
+      
+      // Log de transacción de bienvenida
+      const welcomeOrder = {
+        userId: user.uid,
+        createdAt: Date.now(),
+        total: 0,
+        pointsEarned: 10,
+        items: [{ name: "Regalo de Bienvenida", quantity: 1, price: 0 }],
+        status: "completado",
+        orderType: "quest_reward"
+      };
+      await dbService.addDoc({ name: "orders" }, welcomeOrder);
+
       return newProfile;
     }
   } else {
@@ -160,6 +173,20 @@ async function getOrCreateUserProfile(user) {
         createdAt: new Date().toISOString()
       };
       await setDoc(docRef, newProfile);
+
+      // Log de transacción de bienvenida
+      const welcomeOrder = {
+        userId: user.uid,
+        createdAt: Date.now(),
+        total: 0,
+        pointsEarned: 10,
+        items: [{ name: "Regalo de Bienvenida", quantity: 1, price: 0 }],
+        status: "completado",
+        orderType: "quest_reward"
+      };
+      const ordersCol = collection(dbService, "orders");
+      await addDoc(ordersCol, welcomeOrder);
+
       return newProfile;
     }
   }

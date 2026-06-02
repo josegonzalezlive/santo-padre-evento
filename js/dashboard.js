@@ -281,6 +281,7 @@
           currentProfile = updatedProfile;
         }
         
+        await logPointsTransaction("Regalo de Cumpleaños", 100);
         alert("¡Feliz Cumpleaños! Recibiste 100 $PADRE de regalo.");
         updateDashboardUI();
       } catch (err) {
@@ -381,6 +382,7 @@
           currentProfile = updatedProfile;
         }
         
+        await logPointsTransaction("Reseña de Google Aprobada", 150);
         alert("¡Simulación exitosa! Reseña aprobada. Se han sumado 150 $PADRE a tu cuenta.");
         updateDashboardUI();
       } catch (err) {
@@ -439,6 +441,7 @@
           currentProfile = updatedProfile;
         }
         
+        await logPointsTransaction("Seguir en Instagram", 50);
         alert("¡Gracias por seguirnos en Instagram! Has recibido 50 $PADRE de regalo. 📸🎉");
         updateDashboardUI();
         _isClaimingInstagram = false;
@@ -1086,6 +1089,7 @@
           currentProfile = { ...currentProfile, points: newPoints, isVip };
         }
         
+        await logPointsTransaction("Misión de Flujo Completada", 150);
         alert("¡Acción de flujo procesada! Sumaste 150 $PADRE.");
         updateDashboardUI();
       } catch (err) {
@@ -1280,10 +1284,10 @@
            extraRowHTML = `
             <div class="order-card" style="margin-bottom: 12px; background: rgba(180, 255, 30, 0.05); border: 1px dashed rgba(180, 255, 30, 0.3);">
               <div class="order-meta">
-                <span class="order-date">Acumulado Recompensas</span>
-                <span class="order-total" style="color: var(--lime);">Completado</span>
+                <span class="order-date">Saldo Inicial</span>
+                <span class="order-total" style="color: var(--lime);">Recompensas</span>
               </div>
-              <div class="order-details" style="color: var(--mute);">Misiones, referidos y regalos</div>
+              <div class="order-details" style="color: var(--mute);">Misiones, referidos y regalos anteriores</div>
               <div class="order-reward" style="color: var(--lime); font-weight: bold;">
                 +${missingPoints} $PADRE
               </div>
@@ -1764,6 +1768,34 @@
       }
     };
 
+    // Función para registrar una transacción de puntos en el historial (orders)
+    async function logPointsTransaction(title, points) {
+      if (!currentUser) return;
+      try {
+        const mockOrder = {
+          userId: currentUser.uid,
+          createdAt: Date.now(),
+          total: 0,
+          pointsEarned: points,
+          items: [{ name: title, quantity: 1, price: 0 }],
+          status: "completado",
+          orderType: "quest_reward"
+        };
+
+        if (isMock) {
+          await dbService.addDoc({ name: "orders" }, mockOrder);
+        } else {
+          const { collection, addDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+          const ordersCol = collection(dbService, "orders");
+          await addDoc(ordersCol, mockOrder);
+        }
+        
+        await loadActivityHistory(currentUser.uid);
+      } catch (err) {
+        console.error("Error logging points transaction:", err);
+      }
+    }
+
     // Actualizar elementos dinámicos del Dashboard
     function updateDashboardUI() {
       if (!currentUser || !currentProfile) return;
@@ -1771,10 +1803,26 @@
       const points = currentProfile.points || 0;
       const isVip = currentProfile.isVip || false;
 
-      // 1. Datos en Sidebar
+      // 1. Datos en Sidebar y Tarjeta de Perfil Izquierda (Actualizado de inmediato)
       const userFullName = currentProfile.name || currentUser.displayName || "Cliente";
-      document.getElementById("user-display-name").innerText = userFullName;
-      document.getElementById("user-display-email").innerText = currentProfile.email || currentUser.email;
+      
+      const elSidebarName = document.getElementById("user-display-name");
+      if (elSidebarName) elSidebarName.innerText = userFullName;
+      
+      const elSidebarEmail = document.getElementById("user-display-email");
+      if (elSidebarEmail) elSidebarEmail.innerText = currentProfile.email || currentUser.email;
+
+      const elSummaryName = document.getElementById("summary-card-name");
+      if (elSummaryName) elSummaryName.innerText = userFullName;
+
+      const elSummaryEmail = document.getElementById("summary-card-email");
+      if (elSummaryEmail) elSummaryEmail.innerText = currentProfile.email || currentUser.email;
+
+      const elSummaryPoints = document.getElementById("summary-card-points");
+      if (elSummaryPoints) elSummaryPoints.innerText = `${points} $PADRE`;
+
+      const elAvatarBadge = document.getElementById("profile-avatar-badge");
+      if (elAvatarBadge) elAvatarBadge.innerText = userFullName.charAt(0).toUpperCase();
 
       const userPhotoURL = currentUser.photoURL || currentProfile.photoURL;
       const avatarImg = document.getElementById("user-display-avatar");
@@ -2094,17 +2142,23 @@
       });
 
       // Estilo de carne
-      document.getElementById("profile-meat").value = currentProfile.gastronomy?.meat || "";
+      const elMeat = document.getElementById("profile-meat");
+      if (elMeat) elMeat.value = currentProfile.gastronomy?.meat || "";
 
       // Antojos favoritos
-      document.getElementById("profile-cravings").value = currentProfile.gastronomy?.cravings || "";
+      const elCravings = document.getElementById("profile-cravings");
+      if (elCravings) elCravings.value = currentProfile.gastronomy?.cravings || "";
 
       // 7.1. Tarjeta de Usuario Izquierda (Resumen)
       const summaryCardFullName = currentProfile.name || currentUser.displayName || "Cliente SantoPadre";
-      document.getElementById("summary-card-name").innerText = summaryCardFullName;
-      document.getElementById("summary-card-email").innerText = currentProfile.email || currentUser.email || "";
-      document.getElementById("summary-card-points").innerText = `${points} $PADRE`;
-      document.getElementById("profile-avatar-badge").innerText = summaryCardFullName.charAt(0).toUpperCase();
+      const elSumName = document.getElementById("summary-card-name");
+      if (elSumName) elSumName.innerText = summaryCardFullName;
+      const elSumEmail = document.getElementById("summary-card-email");
+      if (elSumEmail) elSumEmail.innerText = currentProfile.email || currentUser.email || "";
+      const elSumPoints = document.getElementById("summary-card-points");
+      if (elSumPoints) elSumPoints.innerText = `${points} $PADRE`;
+      const elAvatarBadgeElement = document.getElementById("profile-avatar-badge");
+      if (elAvatarBadgeElement) elAvatarBadgeElement.innerText = summaryCardFullName.charAt(0).toUpperCase();
 
       // 7.2. Ficha Gastronómica Izquierda (Resumen de preferencias)
       let spicyText = "Sin definir";

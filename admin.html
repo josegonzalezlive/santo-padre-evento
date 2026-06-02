@@ -1736,6 +1736,20 @@
           auditLogs.push(auditLog);
           localStorage.setItem("santopadre_mock_audit_logs", JSON.stringify(auditLogs));
 
+          // 3. Crear orden virtual de transacción si cambiaron los puntos
+          const diffPoints = newPoints - prevPoints;
+          if (diffPoints !== 0) {
+            const mockOrder = {
+              userId: userId,
+              createdAt: Date.now(),
+              total: 0,
+              pointsEarned: diffPoints,
+              items: [{ name: `Ajuste Admin: ${reason}`, quantity: 1, price: 0 }],
+              status: "completado",
+              orderType: "quest_reward"
+            };
+            await dbService.addDoc({ name: "orders" }, mockOrder);
+          }
         } else {
           // 1. Guardar en Firestore real (Colección users)
           const { doc, setDoc, collection, addDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
@@ -1749,6 +1763,22 @@
           // 2. Registrar en la colección audit_logs de Firestore
           const auditCol = collection(db, "audit_logs");
           await addDoc(auditCol, auditLog);
+
+          // 3. Crear orden virtual de transacción si cambiaron los puntos
+          const diffPoints = newPoints - prevPoints;
+          if (diffPoints !== 0) {
+            const mockOrder = {
+              userId: userId,
+              createdAt: Date.now(),
+              total: 0,
+              pointsEarned: diffPoints,
+              items: [{ name: `Ajuste Admin: ${reason}`, quantity: 1, price: 0 }],
+              status: "completado",
+              orderType: "quest_reward"
+            };
+            const ordersCol = collection(db, "orders");
+            await addDoc(ordersCol, mockOrder);
+          }
         }
 
         alert(`✓ Puntos y sellos actualizados con éxito.\nSe registró la acción en el historial de auditoría.`);
@@ -1810,6 +1840,16 @@
         timestamp: Date.now()
       };
 
+      const mockOrder = {
+        userId: userId,
+        createdAt: Date.now(),
+        total: 0,
+        pointsEarned: pointsBonus,
+        items: [{ name: reasonLabel, quantity: 1, price: 0 }],
+        status: "completado",
+        orderType: "quest_reward"
+      };
+
       try {
         if (isMock) {
           const userRef = { collection: "users", id: userId };
@@ -1819,6 +1859,8 @@
           const logs = JSON.parse(localStorage.getItem("santopadre_mock_audit_logs") || "[]");
           logs.unshift({ ...auditLog, id: "LOG-" + Date.now() });
           localStorage.setItem("santopadre_mock_audit_logs", JSON.stringify(logs));
+
+          await dbService.addDoc({ name: "orders" }, mockOrder);
         } else {
           const { doc, setDoc, collection, addDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
           const userDocRef = doc(db, "users", userId);
@@ -1826,6 +1868,9 @@
 
           const auditCol = collection(db, "audit_logs");
           await addDoc(auditCol, auditLog);
+
+          const ordersCol = collection(db, "orders");
+          await addDoc(ordersCol, mockOrder);
         }
 
         alert("¡Misión aprobada con éxito y puntos acreditados!");
