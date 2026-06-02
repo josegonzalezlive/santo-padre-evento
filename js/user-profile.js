@@ -136,7 +136,7 @@ async function getOrCreateUserProfile(user) {
         name: user.displayName || "Cliente",
         email: user.email,
         photoURL: user.photoURL || "assets/logo-sm.webp",
-        points: 10, // 10 puntos de regalo de bienvenida!
+        points: 100, // 100 puntos de regalo de bienvenida!
         isVip: false,
         createdAt: new Date().toISOString()
       };
@@ -147,7 +147,7 @@ async function getOrCreateUserProfile(user) {
         userId: user.uid,
         createdAt: Date.now(),
         total: 0,
-        pointsEarned: 10,
+        pointsEarned: 100,
         items: [{ name: "Regalo de Bienvenida", quantity: 1, price: 0 }],
         status: "completado",
         orderType: "quest_reward"
@@ -168,7 +168,7 @@ async function getOrCreateUserProfile(user) {
         name: user.displayName || "Cliente",
         email: user.email,
         photoURL: user.photoURL || "assets/logo-sm.webp",
-        points: 10, // 10 puntos de regalo de bienvenida!
+        points: 100, // 100 puntos de regalo de bienvenida!
         isVip: false,
         createdAt: new Date().toISOString()
       };
@@ -179,7 +179,7 @@ async function getOrCreateUserProfile(user) {
         userId: user.uid,
         createdAt: Date.now(),
         total: 0,
-        pointsEarned: 10,
+        pointsEarned: 100,
         items: [{ name: "Regalo de Bienvenida", quantity: 1, price: 0 }],
         status: "completado",
         orderType: "quest_reward"

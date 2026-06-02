@@ -2186,7 +2186,7 @@
         phone: phone || "",
         gender: gender || "",
         birthday: birthday || "",
-        points: 10,
+        points: 100,
         stamps: 0,
         isVip: false,
         createdAt: new Date().toISOString(),
@@ -2202,14 +2202,27 @@
       };
 
       try {
+        const welcomeOrder = {
+          userId: newUid,
+          createdAt: Date.now(),
+          total: 0,
+          pointsEarned: 100,
+          items: [{ name: "Regalo de Bienvenida", quantity: 1, price: 0 }],
+          status: "completado",
+          orderType: "quest_reward"
+        };
+
         if (isMock) {
           const usersData = JSON.parse(localStorage.getItem("santopadre_mock_db_users") || "{}");
           usersData[newUid] = newProfile;
           localStorage.setItem("santopadre_mock_db_users", JSON.stringify(usersData));
+          await dbService.addDoc({ name: "orders" }, welcomeOrder);
         } else {
-          const { doc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+          const { doc, setDoc, collection, addDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
           const userDocRef = doc(db, "users", newUid);
           await setDoc(userDocRef, newProfile);
+          const ordersCol = collection(db, "orders");
+          await addDoc(ordersCol, welcomeOrder);
         }
 
         alert(`✓ Cliente registrado con éxito.\nSerial ID: SP-${newUid.substring(0, 8).toUpperCase()}`);

@@ -1281,13 +1281,15 @@
         
         let extraRowHTML = "";
         if (missingPoints > 0) {
+           const title = (missingPoints === 100) ? "Regalo de Bienvenida" : "Saldo Inicial";
+           const details = (missingPoints === 100) ? "Bono por registrar una cuenta" : "Misiones, referidos y regalos anteriores";
            extraRowHTML = `
             <div class="order-card" style="margin-bottom: 12px; background: rgba(180, 255, 30, 0.05); border: 1px dashed rgba(180, 255, 30, 0.3);">
               <div class="order-meta">
-                <span class="order-date">Saldo Inicial</span>
-                <span class="order-total" style="color: var(--lime);">Recompensas</span>
+                <span class="order-date">Completado</span>
+                <span class="order-total" style="color: var(--lime);">${title}</span>
               </div>
-              <div class="order-details" style="color: var(--mute);">Misiones, referidos y regalos anteriores</div>
+              <div class="order-details" style="color: var(--mute);">${details}</div>
               <div class="order-reward" style="color: var(--lime); font-weight: bold;">
                 +${missingPoints} $PADRE
               </div>
@@ -1677,7 +1679,7 @@
           uid: user.uid,
           name: user.displayName || "Cliente",
           email: user.email,
-          points: 10,
+          points: 100,
           isVip: false,
           createdAt: new Date().toISOString()
         };
@@ -1695,11 +1697,24 @@
         } else {
           const newProfile = createNewProfileObj();
           await dbService.setDoc(userRef, newProfile);
+          
+          // Log de transacción de bienvenida en mock
+          const welcomeOrder = {
+            userId: user.uid,
+            createdAt: Date.now(),
+            total: 0,
+            pointsEarned: 100,
+            items: [{ name: "Regalo de Bienvenida", quantity: 1, price: 0 }],
+            status: "completado",
+            orderType: "quest_reward"
+          };
+          await dbService.addDoc({ name: "orders" }, welcomeOrder);
+
           triggerMarketingWebhook(newProfile, "user_registered");
           return newProfile;
         }
       } else {
-        const { doc, getDoc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+        const { doc, getDoc, setDoc, collection, addDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
         const docRef = doc(dbService, "users", user.uid);
         const snap = await getDoc(docRef);
         if (snap.exists()) {
@@ -1707,6 +1722,20 @@
         } else {
           const newProfile = createNewProfileObj();
           await setDoc(docRef, newProfile);
+
+          // Log de transacción de bienvenida en firebase
+          const welcomeOrder = {
+            userId: user.uid,
+            createdAt: Date.now(),
+            total: 0,
+            pointsEarned: 100,
+            items: [{ name: "Regalo de Bienvenida", quantity: 1, price: 0 }],
+            status: "completado",
+            orderType: "quest_reward"
+          };
+          const ordersCol = collection(dbService, "orders");
+          await addDoc(ordersCol, welcomeOrder);
+
           triggerMarketingWebhook(newProfile, "user_registered");
           return newProfile;
         }
@@ -1800,8 +1829,36 @@
     function updateDashboardUI() {
       if (!currentUser || !currentProfile) return;
       
-      const points = currentProfile.points || 0;
+      let points = currentProfile.points || 0;
       const isVip = currentProfile.isVip || false;
+
+      // Autocorrección de puntos de bienvenida heredados (de 10 a 100)
+      if (points === 10 || points === 110) {
+        const newPoints = points + 90;
+        currentProfile.points = newPoints; // Actualización local inmediata
+        points = newPoints;
+        
+        // Ejecutar actualización en segundo plano
+        (async () => {
+          try {
+            if (isMock) {
+              const userRef = { collection: "users", id: currentUser.uid };
+              const usersData = JSON.parse(localStorage.getItem("santopadre_mock_db_users") || "{}");
+              if (usersData[currentUser.uid]) {
+                usersData[currentUser.uid].points = newPoints;
+                localStorage.setItem("santopadre_mock_db_users", JSON.stringify(usersData));
+              }
+            } else {
+              const { doc, setDoc } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
+              const userDocRef = doc(dbService, "users", currentUser.uid);
+              await setDoc(userDocRef, { points: newPoints }, { merge: true });
+            }
+            console.log(`Puntos de bienvenida corregidos a ${newPoints}`);
+          } catch (e) {
+            console.error("Error al corregir puntos de bienvenida:", e);
+          }
+        })();
+      }
 
       // 1. Datos en Sidebar y Tarjeta de Perfil Izquierda (Actualizado de inmediato)
       const userFullName = currentProfile.name || currentUser.displayName || "Cliente";
