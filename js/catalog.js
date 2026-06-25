@@ -61,7 +61,7 @@ const CATALOG = {
           "allergens": "Ninguno",
           "image": "assets/menu/tacos-pastor.avif",
           "video": "assets/video/tacos-de-pollo.mov",
-          "price": 11,
+          "price": 11.5,
           "badges": [],
           "tags": [
             "🍗 POLLO GUISADO",
