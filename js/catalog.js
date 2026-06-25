@@ -160,6 +160,24 @@ const CATALOG = {
           "hasExtras": true
         }
       ]
+    },
+    {
+      "id": "bebidas",
+      "name": "Bebidas",
+      "emoji": "🥤",
+      "subtitle": "Hidratación sagrada para acompañar tus tacos y burritos.",
+      "items": [
+        {
+          "id": "lipton",
+          "name": "Lipton",
+          "description": "Té frío para los que buscan un poco de calma cítrica en medio del caos.",
+          "price": 3,
+          "image": "assets/menu/lipton.avif",
+          "tags": [
+            "🍃 REFRESCANTE"
+          ]
+        }
+      ]
     }
   ],
   "extras": {
