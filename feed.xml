@@ -42,6 +42,18 @@
       <g:brand>SantoPadre</g:brand>
     </item>
     <item>
+      <g:id>tacos-tinga-pollo</g:id>
+      <g:title>Tacos de Tinga de Pollo (3U)</g:title>
+      <g:description>Pollo deshebrado en salsa de tomate, cebolla y chipotle, servido con cebolla y cilantro.</g:description>
+      <g:link>https://santopadre.store/#section-taqueria</g:link>
+      <g:image_link>https://santopadre.store/assets/menu/tacos-pastor.avif</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>11.00 USD</g:price>
+      <g:condition>new</g:condition>
+      <g:product_type>Alimentos y Bebidas &gt; Comidas Preparadas</g:product_type>
+      <g:brand>SantoPadre</g:brand>
+    </item>
+    <item>
       <g:id>tacos-birria</g:id>
       <g:title>Tacos de Birria (3U)</g:title>
       <g:description>Queso fundido, carne de res adobada hecha a fuego lento, cebolla y cilantro. Incluye consomé.</g:description>

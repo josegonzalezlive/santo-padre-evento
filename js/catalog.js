@@ -55,6 +55,22 @@ const CATALOG = {
           "hasExtras": true
         },
         {
+          "id": "tacos-tinga-pollo",
+          "name": "Tacos de Tinga de Pollo (3U)",
+          "description": "Pollo deshebrado en salsa de tomate, cebolla y chipotle, servido con cebolla y cilantro.",
+          "allergens": "Ninguno",
+          "image": "assets/menu/tacos-pastor.avif",
+          "video": "assets/video/tacos-de-pollo.mov",
+          "price": 11,
+          "badges": [],
+          "tags": [
+            "🍗 POLLO GUISADO",
+            "🌶️ TOQUE CHIPOTLE",
+            "🌽 100% MAÍZ"
+          ],
+          "hasExtras": true
+        },
+        {
           "id": "tacos-birria",
           "name": "Tacos de Birria (3U)",
           "description": "Queso fundido, carne de res adobada hecha a fuego lento, cebolla y cilantro. Incluye consomé.",
